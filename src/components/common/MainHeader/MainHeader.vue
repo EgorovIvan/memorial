@@ -34,4 +34,34 @@ import HeaderFunctionalBlock from "@/components/common/MainHeader/HeaderFunction
     background-color: transparent;
     border: none;
   }
+
+  @media screen and (max-width: 1430px) {
+    .header.login-page {
+      padding: 26px 20px 0;
+    }
+
+    .header {
+      padding: 0 20px;
+    }
+  }
+
+  @media screen and (max-width: 1120px) {
+    .logo-header__img {
+      width: 175px;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .header {
+      background-color: #fff;
+      border-bottom: 1px solid var(--light-gray);
+      position: fixed;
+      height: 56px;
+      padding: 0 20px;
+    }
+
+    .header.login-page {
+      border: none;
+    }
+  }
 </style>

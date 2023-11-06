@@ -1,5 +1,5 @@
 <template>
-  <nav class="header-menu" id="header-menu">
+  <nav class="header-menu">
     <ul class="menu">
       <li class="menu__item">
         <a href="#" class="menu__link">Люди</a>
@@ -46,5 +46,46 @@
 
   .menu__link:hover {
     text-decoration: underline;
+  }
+
+  @media screen and (max-width: 1120px) {
+    .menu__item {
+      margin-right: 16px;
+    }
+
+    .menu__link {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 860px) {
+    .header-menu {
+      display: none;
+    }
+
+    .aside-menu .header-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      padding: 0 40px;
+      width: 100%;
+    }
+
+    .menu {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .menu__item {
+      margin: 0 0 32px 0;
+    }
+
+    .menu__link {
+      font: 900 26px sans-serif;
+      color: $black;
+    }
   }
 </style>

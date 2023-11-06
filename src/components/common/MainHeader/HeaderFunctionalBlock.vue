@@ -1,8 +1,8 @@
 <template>
-  <div class="header-buttons" id="header-button">
+  <div class="header-buttons">
     <button type="button" class="header-buttons__lang">Ru</button>
-    <button type="button" class="header-buttons__registration open-registration btn white-btn">Регистрация</button>
-    <button type="button" class="header-buttons__menu" id="mobile-menu">
+    <button type="button" class="header-buttons__registration btn white-btn">Регистрация</button>
+    <button type="button" class="header-buttons__menu">
       <span></span>
       <span></span>
       <span></span>
@@ -28,6 +28,10 @@
     color: $dark-gray;
     transition: $normal;
     background-color: transparent;
+
+    @media screen and (max-width: 860px) {
+      margin-right: 6px;
+    }
   }
 
   .header-buttons__lang:hover {
@@ -46,9 +50,41 @@
 
   .header-buttons__registration {
     padding: 0 15.4px;
+
+    @media screen and (max-width: 860px) {
+      display: none;
+    }
   }
 
   .header-buttons__menu {
     display: none;
+  }
+
+  @media screen and (max-width: 860px) {
+    .header-buttons__menu {
+      display: block;
+      width: 44px;
+      height: 44px;
+      position: relative;
+    }
+
+    .header-buttons__menu span {
+      width: 18px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: $black;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .header-buttons__menu span:nth-child(1) {
+      top: calc(50% - 6px);
+    }
+
+    .header-buttons__menu span:nth-child(3) {
+      top: calc(50% + 6px);
+    }
   }
 </style>
