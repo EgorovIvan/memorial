@@ -1,0 +1,45 @@
+#page.active {
+  filter: blur(5px);
+}
+
+section {
+  width: 100%;
+  padding: 0 $content-size;
+}
+
+.bg-img {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.blue-btn,
+.white-btn:hover {
+  color: #fff;
+  background-color: $blue;
+}
+
+.blue-btn:hover {
+  background-color: $blue-hover;
+  color: #fff;
+}
+
+.white-btn {
+  border: 1px solid $blue;
+  color: $blue;
+  background-color: transparent;
+}
+
+.btn {
+  height: 44px;
+  text-transform: uppercase;
+  transition: $normal;
+  padding: 3px 15px 0;
+  letter-spacing: 0.05em;
+  border-radius: 7px;
+  cursor: pointer;
+}
