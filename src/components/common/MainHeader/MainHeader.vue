@@ -34,8 +34,4 @@ import HeaderFunctionalBlock from "@/components/common/MainHeader/HeaderFunction
     background-color: transparent;
     border: none;
   }
-
-  .header.login-page ~ .content {
-    padding-top: 0;
-  }
 </style>
