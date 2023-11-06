@@ -1,5 +1,6 @@
 <template>
   <PageWrapper>
+    <RegistrationPopup />
     <main class="content">
       <PreviewSection />
     </main>
@@ -9,6 +10,7 @@
 <script setup>
 import PageWrapper from "@/components/common/PageWrapper.vue";
 import PreviewSection from "@/components/PreviewSection/PreviewSection.vue";
+import RegistrationPopup from "@/components/RegistrationPopup/RegistrationPopup.vue";
 </script>
 
 <style scoped lang="scss">

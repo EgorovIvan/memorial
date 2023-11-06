@@ -4,20 +4,19 @@
 
       <h3 class="login-form__title">Вход в систему</h3>
 
-      <div class="input-wrap">
-        <span class="input-wrap__title">Email:</span>
-        <div class="input-form">
-          <input type="email" class="input-text" name="login-form__mail" title=""/>
-        </div>
-      </div>
+      <MainInput
+          :value="''"
+          title="Email:"
+      />
 
-      <div class="input-wrap">
-        <span class="input-wrap__title">Пароль:</span>
-        <div class="input-form">
-          <a class="input-link" id="input-link">Забыли пароль?</a>
-          <input type="password" class="input-text" name="login-form__password" title=""/>
-        </div>
-      </div>
+      <MainInput
+          :value="''"
+          title="Пароль:"
+      >
+        <template #link>
+          <a class="input-link">Забыли пароль?</a>
+        </template>
+      </MainInput>
 
       <input type="submit" class="form__submit btn blue-btn" value="Войти" title="Войти"/>
 
@@ -28,6 +27,7 @@
 
 <script setup>
 
+import MainInput from "@/components/common/MainInput.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -69,22 +69,6 @@
   font: 900 22px sans-serif;
 }
 
-.input-wrap {
-  width: 100%;
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.input-wrap__title {
-  color: $dark-gray;
-  font-size: 14px;
-  margin-bottom: 0.2em;
-  padding-bottom: 3px;
-}
-
 .form__submit {
   line-height: 1.3;
   font: 600 14px sans-serif;
@@ -103,7 +87,6 @@
 }
 
 
-.input-form,
 .select-form,
 .textarea-form {
   width: 100%;
@@ -119,8 +102,7 @@
   align-items: center;
 }
 
-.input-form:hover,
-.input-form:focus-within,
+
 .select-form:hover,
 .select-form:focus-within,
 .textarea-form,
