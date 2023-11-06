@@ -21,6 +21,15 @@ import PreviewForm from "@/components/PreviewSection/PreviewForm.vue";
   grid-template-columns: 59% 41%;
   grid-template-rows: 1fr;
   overflow: hidden;
+
+  @media screen and (max-width: 980px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 85px;
+    height: auto;
+  }
 }
 
 .preview-img {
@@ -29,13 +38,37 @@ import PreviewForm from "@/components/PreviewSection/PreviewForm.vue";
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
 
-.preview-img img {
-  width: 744px;
-}
+  & img {
+    width: 744px;
 
-.preview-img img:last-child {
-  display: none;
+    &:last-child {
+      display: none;
+
+      @media screen and (max-width: 980px) {
+        display: block;
+        width: 744px;
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    &:first-child {
+      @media screen and (max-width: 980px) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 1280px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    justify-content: center;
+    padding: 16px 0;
+  }
 }
 </style>

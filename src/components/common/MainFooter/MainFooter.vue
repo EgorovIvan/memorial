@@ -46,6 +46,24 @@
     grid-template-columns: max-content 1fr max-content;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 1430px) {
+      padding: 26px 20px 0;
+    }
+
+    @media screen and (max-width: 1120px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      height: 210px;
+    }
+
+    @media screen and (max-width: 860px) {
+      height: auto;
+      padding: 32px 0 48px;
+    }
   }
 
   .logo-footer__img {
@@ -54,6 +72,15 @@
 
   .footer-menu {
     width: 100%;
+
+    @media screen and (max-width: 1120px) {
+      width: auto;
+      margin: 24px 0 32px;
+    }
+
+    @media screen and (max-width: 860px) {
+      display: none;
+    }
   }
 
   .menu-list {

@@ -1,6 +1,6 @@
 <template>
   <PageWrapper>
-    <RegistrationPopup />
+    <RegistrationPopup v-if="false" />
     <main class="content">
       <PreviewSection />
     </main>
