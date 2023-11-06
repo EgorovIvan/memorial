@@ -1,25 +1,20 @@
 <template>
   <div class="preview-form">
-    <form class="login-form" id="login-form">
-
+    <form class="login-form">
       <h3 class="login-form__title">Вход в систему</h3>
-
       <MainInput
           :value="''"
           title="Email:"
       />
-
       <MainInput
           :value="''"
           title="Пароль:"
       >
         <template #link>
-          <a class="input-link">Забыли пароль?</a>
+          <span @click="regStore.setVisiblePasswordRecoverPopup(true)" class="input-link">Забыли пароль?</span>
         </template>
       </MainInput>
-
       <input type="submit" class="form__submit btn blue-btn" value="Войти" title="Войти"/>
-
       <span
         @click="openRegPopup"
         class="login-form__registration-link"
@@ -48,6 +43,10 @@ function openRegPopup() {
   height: 100%;
   background-color: #fff;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    padding: 32px 20px 48px;
+  }
 }
 
 .preview-form:after {
@@ -70,6 +69,10 @@ function openRegPopup() {
 
 .login-form {
   width: 340px;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .login-form__title {
