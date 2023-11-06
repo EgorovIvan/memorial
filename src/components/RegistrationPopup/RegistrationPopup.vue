@@ -1,7 +1,7 @@
 <template>
-  <div class="preview-modal" id="modal-from">
-    <div class="aside-form" id="form-aside">
-      <button type="button" class="close-registration" id="close-aside"></button>
+  <div class="preview-modal">
+    <div class="aside-form">
+      <button type="button" class="close-registration" @click="closePopup"></button>
 
       <form class="form-registration" id="form-registration">
         <h3 class="form-registration__title">Регистрация</h3>
@@ -29,19 +29,25 @@
 
         <input type="submit" class="form__submit btn blue-btn" value="Зарегистрироваться" title="Зарегистрироваться"/>
         <p class="form-registration__text">Нажимая кнопку, вы соглашаетесь с условиями
-          <a href="#">политики обработки персональных данных</a></p>
+          <a href="#">политики обработки персональных данных</a>
+        </p>
       </form>
     </div>
   </div>
 </template>
 
 <script setup>
-
 import MainInput from "@/components/common/MainInput.vue";
+import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
+
+const regStore = useRegistrationStore()
+
+function closePopup() {
+  regStore.setVisibleRegistrationPopup(false)
+}
 </script>
 
 <style scoped lang="scss">
-
 .preview-modal {
   width: 100%;
   height: 100%;
@@ -49,10 +55,8 @@ import MainInput from "@/components/common/MainInput.vue";
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 0;
-  visibility: hidden;
-  z-index: -150;
   overflow: hidden;
+  z-index: 100;
 }
 
 .preview-modal.open {
@@ -193,5 +197,9 @@ import MainInput from "@/components/common/MainInput.vue";
 .member-card,
 .pet-card-wrap {
   background-color: $gray;
+}
+
+.form__submit{
+  margin-top: 32px;
 }
 </style>

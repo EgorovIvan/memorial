@@ -20,14 +20,25 @@
 
       <input type="submit" class="form__submit btn blue-btn" value="Войти" title="Войти"/>
 
-      <a href="#" class="login-form__registration-link">Нет аккаунта? Зарегистироваться</a>
+      <span
+        @click="openRegPopup"
+        class="login-form__registration-link"
+      >
+        Нет аккаунта? Зарегистироваться
+      </span>
     </form>
   </div>
 </template>
 
 <script setup>
-
 import MainInput from "@/components/common/MainInput.vue";
+import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
+
+const regStore = useRegistrationStore()
+
+function openRegPopup() {
+  regStore.setVisibleRegistrationPopup(true)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -80,6 +91,7 @@ import MainInput from "@/components/common/MainInput.vue";
   margin-top: 40px;
   color: $blue;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .login-form__registration-link:hover {
