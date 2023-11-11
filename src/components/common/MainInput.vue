@@ -1,15 +1,25 @@
 <template>
   <div class="input-wrap">
     <span class="input-wrap__title">{{ title }}</span>
-    <div class="input-form">
+    <div :class="getClassesInput">
       <slot name="link"></slot>
       <input type="text" class="input-text" @input="emits('input', $event.target.value)" />
     </div>
+    <transition name="fade">
+       <span
+           v-if="!valid"
+           class="text-invalid"
+       >
+        The field is required
+      </span>
+    </transition>
   </div>
 </template>
 
 <script setup>
-  defineProps({
+  import {computed} from "vue";
+
+  const props = defineProps({
     title: {
       type: String,
       required: true,
@@ -18,11 +28,21 @@
       type: String,
       required: true,
     },
+    valid: {
+      type: Boolean,
+      default: true,
+    },
   })
 
   const emits = defineEmits([
       'input'
   ])
+
+  const getClassesInput = computed(() => {
+    return ['input-form', {
+      'input-form_invalid': !props.valid,
+    }]
+  })
 </script>
 
 <style scoped lang="scss">
@@ -55,6 +75,10 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+
+    &_invalid {
+      border-color: $red;
+    }
   }
 
   .input-form:hover{
@@ -71,5 +95,35 @@
 
   .input-link + .input-text {
     width: calc(100% - 120px);
+  }
+
+  .text-invalid {
+    color: $red;
+    padding-left: 18px;
+    font-size: 12px;
+    margin: 2px 0 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      border-radius: 50%;
+      height: 4px;
+      left: 7px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      background-color: $red;
+    }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
   }
 </style>
