@@ -44,11 +44,38 @@ const regStore = useRegistrationStore()
     font: 900 52px sans-serif;
     line-height: 1.3;
     color: $black;
+
+    @media screen and (max-width: 1120px) {
+      font-size: 4vw;
+    }
+
+    @media screen and (max-width: 980px) {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 560px) {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   &__input {
     margin-top: 18px;
     margin-bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-recover-wrap .form__submit {
+    width: 100%;
   }
 }
 </style>

@@ -145,4 +145,26 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+@media screen and (max-width: 1430px) {
+  .preview-modal.aside-top .aside-form {
+    padding: 64px 20px 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .preview-modal.aside-top .aside-form {
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .preview-modal:not(.aside-right, .aside-form) {
+    overflow-y: scroll;
+  }
+
+  .aside-form {
+    width: 100%;
+  }
+}
 </style>
