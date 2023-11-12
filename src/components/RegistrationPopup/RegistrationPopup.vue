@@ -60,6 +60,7 @@ import api from "@/api/auth/api";
 import {useRouter} from "vue-router";
 import {getToken, getMessaging} from "firebase/messaging";
 import requestPermission from "@/utils/requestPermission";
+import getUA from "@/utils/getUA";
 
 const router = useRouter()
 const regStore = useRegistrationStore()
@@ -79,6 +80,7 @@ async function registrationUser() {
   formSubmitted.value = true
   if (!formIsValid.value) return
 
+  userInfo.deviceName = getUA()
   const notificationPermission = await requestPermission();
   if (notificationPermission) {
     userInfo.fcmToken = await getFirebaseToken();
