@@ -58,6 +58,8 @@ import AuthPopup from "@/components/common/AuthPopup.vue";
 import {computed, reactive, ref} from "vue";
 import api from "@/api/auth/api";
 import {useRouter} from "vue-router";
+import {getToken, getMessaging} from "firebase/messaging";
+import requestPermission from "@/utils/requestPermission";
 
 const router = useRouter()
 const regStore = useRegistrationStore()
@@ -76,6 +78,12 @@ const userInfo = reactive({
 async function registrationUser() {
   formSubmitted.value = true
   if (!formIsValid.value) return
+
+  const notificationPermission = await requestPermission();
+  if (notificationPermission) {
+    userInfo.fcmToken = await getFirebaseToken();
+  }
+
   try {
     const res = await api.registration(userInfo)
     console.log(res)
@@ -87,6 +95,21 @@ async function registrationUser() {
     } else {
       alert('Произошла ошибка на сервере')
     }
+  }
+}
+
+async function getFirebaseToken() {
+  const messaging = getMessaging();
+  try {
+    const token = await getToken(messaging, { vapidKey: 'BHQHjYlp3-LViMyhDaO5nr8t1-o5LFQ3MkoueeqWN0YUR6gwueAcRemR1lYW9uBBZ4QWQH3JGNKCJdgFGhUGiWY' })
+    if (token) {
+      console.log(token)
+      return token
+    }
+    console.log('No registration token available. Request permission to generate one.');
+    return ''
+  } catch (e) {
+    console.log('An error occurred while retrieving token. ', e);
   }
 }
 
