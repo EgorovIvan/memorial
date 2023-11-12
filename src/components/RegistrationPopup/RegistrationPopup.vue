@@ -4,7 +4,7 @@
     @close="closePopup"
   >
     <template #content>
-      <form @submit.prevent="registrationUser" class="form-registration" id="form-registration">
+      <form @submit.prevent="registrationUser" class="form-registration">
         <h3 class="form-registration__title">Регистрация</h3>
         <MainInput
             :value="userInfo.username"
@@ -28,12 +28,14 @@
             :value="userInfo.password"
             :valid="passwordIsValid || !formSubmitted"
             title="Пароль:"
+            type="password"
             @input="setPassword"
         />
         <MainInput
             :value="userInfo.confirmPassword"
             :valid="confirmPasswordIsValid || !formSubmitted"
             title="Повторите пароль:"
+            type="password"
             @input="setConfirmPassword"
         />
         <input
@@ -55,7 +57,9 @@ import {useRegistrationStore} from "@/store/registrationStore/useRegistrationSto
 import AuthPopup from "@/components/common/AuthPopup.vue";
 import {computed, reactive, ref} from "vue";
 import api from "@/api/auth/api";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 const regStore = useRegistrationStore()
 const formSubmitted = ref(false)
 const userInfo = reactive({
@@ -71,24 +75,41 @@ const userInfo = reactive({
 
 async function registrationUser() {
   formSubmitted.value = true
+  if (!formIsValid.value) return
   try {
-    const { status, token, user, id } = await api.registration(userInfo)
-
+    const res = await api.registration(userInfo)
+    console.log(res)
+    router.push('/')
   } catch (e) {
-    console.log(e)
+    const code = e.response?.code;
+    if (code === 422) {
+      alert('Email уже занят')
+    } else {
+      alert('Произошла ошибка на сервере')
+    }
   }
 }
+
+const formIsValid = computed(() => {
+  return usernameIsValid.value &&
+      emailIsValid.value &&
+      passwordIsValid.value &&
+      confirmPasswordIsValid.value &&
+      phoneIsValid.value
+})
 
 const usernameIsValid = computed(() => {
   return userInfo.username.length !== 0
 })
 
 const emailIsValid = computed(() => {
-  return userInfo.email.length !== 0
+  return Boolean(userInfo.email.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  ));
 })
 
 const passwordIsValid = computed(() => {
-  return userInfo.password.length !== 0
+  return userInfo.password.length >= 6
 })
 
 const confirmPasswordIsValid = computed(() => {

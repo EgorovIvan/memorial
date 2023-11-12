@@ -3,7 +3,7 @@
     <span class="input-wrap__title">{{ title }}</span>
     <div :class="getClassesInput">
       <slot name="link"></slot>
-      <input type="text" class="input-text" @input="emits('input', $event.target.value)" />
+      <input :type="type" class="input-text" @input="emits('input', $event.target.value)" />
     </div>
     <transition name="fade">
        <span
@@ -31,6 +31,10 @@
     valid: {
       type: Boolean,
       default: true,
+    },
+    type: {
+      type: String,
+      default: 'text',
     },
   })
 
