@@ -91,6 +91,7 @@ async function registrationUser() {
   const notificationPermission = await requestPermission();
   if (notificationPermission) {
     userInfo.fcmToken = await getFirebaseToken();
+    localStorage.fcmToken = userInfo.fcmToken
   }
 
   try {
@@ -116,9 +117,10 @@ async function getFirebaseToken() {
       return token
     }
     console.log('No registration token available. Request permission to generate one.');
-    return ''
+    return null
   } catch (e) {
     console.log('An error occurred while retrieving token. ', e);
+    return null
   }
 }
 
