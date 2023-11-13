@@ -1,14 +1,19 @@
 <template>
   <div class="preview-form">
-    <form class="login-form">
+    <form class="login-form" @submit.prevent="loginUser">
       <h3 class="login-form__title">Вход в систему</h3>
       <MainInput
-          :value="''"
+          :value="userInfo.email"
+          :valid="emailIsValid || !formSubmitted"
+          @input="setEmail"
           title="Email:"
       />
       <MainInput
-          :value="''"
+          :value="userInfo.password"
+          :valid="passwordIsValid || !formSubmitted"
+          @input="setPassword"
           title="Пароль:"
+          type="password"
       >
         <template #link>
           <span @click="regStore.setVisiblePasswordRecoverPopup(true)" class="input-link">Забыли пароль?</span>
@@ -28,12 +33,72 @@
 <script setup>
 import MainInput from "@/components/common/MainInput.vue";
 import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
+import {computed, onMounted, reactive, ref} from "vue";
+import api from "@/api/auth/api";
+import getUA from "@/utils/getUA";
 
 const regStore = useRegistrationStore()
+const userInfo = reactive({
+  email: '',
+  password: '',
+  fcmToken: null,
+})
+const formSubmitted = ref(false)
+
+const emailIsValid = computed(() => {
+  return userInfo.email.length !== 0
+})
+
+const passwordIsValid = computed(() => {
+  return userInfo.password.length !== 0
+})
+
+async function loginUser() {
+  formSubmitted.value = true
+
+  if (!emailIsValid.value || !passwordIsValid.value) return
+
+  userInfo.fcmToken = getFcmToken()
+  try {
+    await api.login({
+      ...userInfo,
+      deviceName: getUA(),
+    })
+  } catch (e) {
+    const code = e.response?.code;
+     if (code === 404) {
+      alert('Введен неправильно пароль или логин')
+    } else {
+      alert('Произошла ошибка на сервере')
+    }
+  }
+}
 
 function openRegPopup() {
   regStore.setVisibleRegistrationPopup(true)
 }
+
+function setEmail(email) {
+  userInfo.email = email
+}
+
+function setPassword(password) {
+  userInfo.password = password
+}
+
+function getFcmToken() {
+  return localStorage.fcmToken || null
+}
+
+onMounted(() => {
+
+  const formData = new FormData()
+  formData.append('test', '123');
+  fetch('/123', {
+    method: "POST",
+    body: formData,
+  })
+})
 </script>
 
 <style lang="scss" scoped>

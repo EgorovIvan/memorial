@@ -14,4 +14,13 @@ export default {
       location,
     })).data
   },
+
+  async login({ email, password, fcmToken, deviceName }) {
+    return (await axios.post(`${path}/auth/login`, {
+      email,
+      password,
+      fcm_token: fcmToken,
+      device_name: deviceName,
+    })).data
+  }
 }
