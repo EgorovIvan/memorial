@@ -36,7 +36,9 @@ import {useRegistrationStore} from "@/store/registrationStore/useRegistrationSto
 import {computed, onMounted, reactive, ref} from "vue";
 import api from "@/api/auth/api";
 import getUA from "@/utils/getUA";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 const regStore = useRegistrationStore()
 const userInfo = reactive({
   email: '',
@@ -64,8 +66,9 @@ async function loginUser() {
       ...userInfo,
       deviceName: getUA(),
     })
+    router.push('/')
   } catch (e) {
-    const code = e.response?.code;
+    const code = e.response?.status;
      if (code === 404) {
       alert('Введен неправильно пароль или логин')
     } else {

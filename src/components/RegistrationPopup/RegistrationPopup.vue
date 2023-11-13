@@ -91,7 +91,8 @@ async function registrationUser() {
     console.log(res)
     router.push('/')
   } catch (e) {
-    const code = e.response?.code;
+    const code = e.response?.status;
+
     if (code === 422) {
       alert('Email уже занят')
     } else {
@@ -105,7 +106,6 @@ async function getFirebaseToken() {
   try {
     const token = await getToken(messaging, { vapidKey: 'BHQHjYlp3-LViMyhDaO5nr8t1-o5LFQ3MkoueeqWN0YUR6gwueAcRemR1lYW9uBBZ4QWQH3JGNKCJdgFGhUGiWY' })
     if (token) {
-      console.log(token)
       return token
     }
     console.log('No registration token available. Request permission to generate one.');
