@@ -6,6 +6,7 @@
           :value="userInfo.email"
           :valid="emailIsValid || !formSubmitted"
           @input="setEmail"
+          name="email"
           title="Email:"
       />
       <MainInput
@@ -13,6 +14,7 @@
           :valid="passwordIsValid || !formSubmitted"
           @input="setPassword"
           title="Пароль:"
+          name="password"
           type="password"
       >
         <template #link>

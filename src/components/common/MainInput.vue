@@ -3,7 +3,12 @@
     <span class="input-wrap__title">{{ title }}</span>
     <div :class="getClassesInput">
       <slot name="link"></slot>
-      <input :type="type" class="input-text" @input="emits('input', $event.target.value)" />
+      <input
+        :type="type"
+        :name="name"
+        class="input-text"
+        @input="emits('input', $event.target.value)"
+      />
     </div>
     <transition name="fade">
        <span
@@ -35,6 +40,10 @@
     type: {
       type: String,
       default: 'text',
+    },
+    name: {
+      type: String,
+      required: true,
     },
   })
 

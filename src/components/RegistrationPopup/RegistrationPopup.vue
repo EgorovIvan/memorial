@@ -10,18 +10,21 @@
             :value="userInfo.username"
             :valid="usernameIsValid || !formSubmitted"
             title="ФИО:"
+            name="name"
             @input="setUserName"
         />
         <MainInput
             :value="userInfo.email"
             :valid="emailIsNotEmpty || !formSubmitted"
             title="Email:"
+            name="email"
             @input="setEmail"
         />
         <MainInput
             :value="userInfo.phone"
             :valid="phoneIsValid || !formSubmitted"
             title="Телефон:"
+            name="phone"
             @input="setPhone"
         />
         <MainInput
@@ -29,6 +32,7 @@
             :valid="passwordIsValid || !formSubmitted"
             title="Пароль:"
             type="password"
+            name="password"
             @input="setPassword"
         />
         <MainInput
@@ -36,6 +40,7 @@
             :valid="confirmPasswordNotEmpty || !formSubmitted"
             title="Повторите пароль:"
             type="password"
+            name="confirmPassword"
             @input="setConfirmPassword"
         />
         <input
