@@ -43,7 +43,7 @@ const regStore = useRegistrationStore()
 const userInfo = reactive({
   email: '',
   password: '',
-  fcmToken: null,
+  fcmToken: '',
 })
 const formSubmitted = ref(false)
 
@@ -62,10 +62,11 @@ async function loginUser() {
 
   userInfo.fcmToken = getFcmToken()
   try {
-    await api.login({
+    const res = await api.login({
       ...userInfo,
       deviceName: getUA(),
     })
+    console.log(res)
     router.push('/')
   } catch (e) {
     const code = e.response?.status;
@@ -90,7 +91,7 @@ function setPassword(password) {
 }
 
 function getFcmToken() {
-  return localStorage.fcmToken || null
+  return localStorage.fcmToken || ''
 }
 
 onMounted(() => {
