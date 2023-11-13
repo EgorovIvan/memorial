@@ -14,7 +14,7 @@
         />
         <MainInput
             :value="userInfo.email"
-            :valid="emailIsValid || !formSubmitted"
+            :valid="emailIsNotEmpty || !formSubmitted"
             title="Email:"
             @input="setEmail"
         />
@@ -33,7 +33,7 @@
         />
         <MainInput
             :value="userInfo.confirmPassword"
-            :valid="confirmPasswordIsValid || !formSubmitted"
+            :valid="confirmPasswordNotEmpty || !formSubmitted"
             title="Повторите пароль:"
             type="password"
             @input="setConfirmPassword"
@@ -78,7 +78,14 @@ const userInfo = reactive({
 
 async function registrationUser() {
   formSubmitted.value = true
-  if (!formIsValid.value) return
+  if (!formIsValid.value) return;
+
+  if (!emailIsValid.value) {
+    return alert('Емейл введен неверно')
+  }
+  if (!confirmPasswordIsValid.value) {
+    return alert('Пароли не совпадают')
+  }
 
   userInfo.deviceName = getUA()
   const notificationPermission = await requestPermission();
@@ -117,14 +124,18 @@ async function getFirebaseToken() {
 
 const formIsValid = computed(() => {
   return usernameIsValid.value &&
-      emailIsValid.value &&
+      emailIsNotEmpty.value &&
       passwordIsValid.value &&
-      confirmPasswordIsValid.value &&
+      confirmPasswordNotEmpty.value &&
       phoneIsValid.value
 })
 
 const usernameIsValid = computed(() => {
   return userInfo.username.length !== 0
+})
+
+const emailIsNotEmpty = computed(() => {
+  return userInfo.email.length !== 0
 })
 
 const emailIsValid = computed(() => {
@@ -137,12 +148,16 @@ const passwordIsValid = computed(() => {
   return userInfo.password.length >= 6
 })
 
-const confirmPasswordIsValid = computed(() => {
-  return userInfo.confirmPassword === userInfo.password
+const confirmPasswordNotEmpty = computed(() => {
+  return userInfo.confirmPassword.length !== 0
 })
 
 const phoneIsValid = computed(() => {
   return userInfo.phone.length !== 0
+})
+
+const confirmPasswordIsValid = computed(() => {
+  return confirmPasswordNotEmpty.value && userInfo.confirmPassword === userInfo.password
 })
 
 function setUserName(name) {
