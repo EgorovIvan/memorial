@@ -10,7 +10,7 @@
            v-if="!valid"
            class="text-invalid"
        >
-        The field is required
+         Поле ялвляется обязательным
       </span>
     </transition>
   </div>
