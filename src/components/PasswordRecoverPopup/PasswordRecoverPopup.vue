@@ -14,6 +14,7 @@
             :value="''"
             title="Email:"
             class="form-recover__input"
+            name="email"
           />
           <input type="submit" class="form__submit blue-btn btn" value="Выслать" title="Зарегистрироваться">
         </div>
