@@ -39,7 +39,7 @@
 <script setup>
 import MainInput from "@/components/common/MainInput.vue";
 import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
-import {computed, onMounted, reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import api from "@/api/auth/api";
 import getUA from "@/utils/getUA";
 import {useRouter} from "vue-router";
@@ -99,16 +99,6 @@ function setPassword(password) {
 function getFcmToken() {
   return localStorage.fcmToken || ''
 }
-
-onMounted(() => {
-
-  const formData = new FormData()
-  formData.append('test', '123');
-  fetch('/123', {
-    method: "POST",
-    body: formData,
-  })
-})
 </script>
 
 <style lang="scss" scoped>
