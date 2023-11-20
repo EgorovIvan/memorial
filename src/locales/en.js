@@ -35,6 +35,10 @@ export default {
       "submit": "Registration",
     },
   },
+  "notifications": {
+    "wrongLogin": "Incorrect password or login entered",
+    "serverError": "An error occurred on the server",
+  },
   "footer": {
     "navigation": {
       "about": "About the project",

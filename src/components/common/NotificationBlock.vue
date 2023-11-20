@@ -9,9 +9,6 @@
         <p class="notification__title">
           {{ notificationStore.title }}
         </p>
-        <p class="notification__text">
-          {{ notificationStore.text }}
-        </p>
         <img
             @click="notificationStore.closeNotification"
             class="notification__close"
@@ -54,13 +51,14 @@ const getIconPath = computed(() => {
   top: 30px;
   left: 50%;
   transform: translate(-50%, 0);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px 20px 20px;
   border-radius: 6px;
   gap: 10px;
   min-width: 300px;
   z-index: 10000;
+  max-width: 450px;
 }
 
 .notification__title{

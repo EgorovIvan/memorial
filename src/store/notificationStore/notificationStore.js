@@ -14,11 +14,10 @@ export const useNotificationStore = defineStore('notification', {
     actions: {
         showNotification(
             title = '',
-            text = '',
             type = NotificationTypes.SUCCESS,
             visibilityTime = 6000
         ) {
-            this.setTextContent(title, text);
+            this.setTextContent(title);
             this.setType(type);
             this.setVisible(true);
 
@@ -35,9 +34,8 @@ export const useNotificationStore = defineStore('notification', {
             this.visible = value;
         },
 
-        setTextContent(title, text) {
+        setTextContent(title) {
             this.title = title;
-            this.text = text;
         },
 
         closeNotification() {

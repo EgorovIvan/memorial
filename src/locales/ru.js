@@ -35,6 +35,10 @@ export default {
       "registerAccount": "Нет аккаунта? Зарегистрироваться",
     },
   },
+  "notifications": {
+    "wrongLogin": "Введен неправильно пароль или логин",
+    "serverError": "Произошла ошибка на сервере",
+  },
   "footer": {
     "navigation": {
       "about": "О проекте",
