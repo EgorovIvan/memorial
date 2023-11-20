@@ -1,7 +1,9 @@
 <template>
   <div class="preview-form">
     <form class="login-form" @submit.prevent="loginUser">
-      <h3 class="login-form__title">Вход в систему</h3>
+      <h3 class="login-form__title">
+        {{ $t('loginPage.previewForm.title') }}
+      </h3>
       <MainInput
           :value="userInfo.email"
           :valid="emailIsValid || !formSubmitted"
@@ -13,20 +15,22 @@
           :value="userInfo.password"
           :valid="passwordIsValid || !formSubmitted"
           @input="setPassword"
-          title="Пароль:"
+          :title="`${$t('loginPage.previewForm.password')}:`"
           name="password"
           type="password"
       >
         <template #link>
-          <span @click="regStore.setVisiblePasswordRecoverPopup(true)" class="input-link">Забыли пароль?</span>
+          <span @click="regStore.setVisiblePasswordRecoverPopup(true)" class="input-link">
+            {{ $t('loginPage.previewForm.forgotPassword') }}
+          </span>
         </template>
       </MainInput>
-      <input type="submit" class="form__submit btn blue-btn" value="Войти" title="Войти"/>
+      <input type="submit" class="form__submit btn blue-btn" :value="$t('loginPage.previewForm.loginButton')" title="Войти"/>
       <span
         @click="openRegPopup"
         class="login-form__registration-link"
       >
-        Нет аккаунта? Зарегистироваться
+        {{ $t('loginPage.previewForm.registerAccount') }}
       </span>
     </form>
   </div>

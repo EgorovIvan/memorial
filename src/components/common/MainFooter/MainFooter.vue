@@ -1,33 +1,47 @@
 <template>
   <footer class="footer">
     <a href="#" class="logo-footer">
-      <img src="./../../../assets/img/logo-light.svg" class="logo-footer__img" alt="" title=""/>
+      <img src="./../../../assets/img/logo-light.svg" class="logo-footer__img" alt="img" />
     </a>
 
     <nav class="footer-menu">
       <ul class="menu-list">
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">О проекте</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.about') }}
+          </a>
         </li>
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">Семейное древо</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.tree') }}
+          </a>
         </li>
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">Магазин</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.shop') }}
+          </a>
         </li>
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">Поиск людей</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.search') }}
+          </a>
         </li>
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">Кладбища</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.cemeteries') }}
+          </a>
         </li>
         <li class="menu-list__item">
-          <a href="#" class="menu-list__link">Контакты</a>
+          <a href="#" class="menu-list__link">
+            {{ $t('footer.navigation.contacts') }}
+          </a>
         </li>
       </ul>
     </nav>
 
-    <a href="#" class="cookie-link">Политика обработки персональных данных</a>
+    <a href="#" class="cookie-link">
+      {{ $t('footer.policy') }}
+    </a>
   </footer>
 </template>
 

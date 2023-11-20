@@ -5,11 +5,13 @@
   >
     <template #content>
       <form @submit.prevent="registrationUser" class="form-registration">
-        <h3 class="form-registration__title">Регистрация</h3>
+        <h3 class="form-registration__title">
+          {{ $t('loginPage.registrationPopup.title') }}
+        </h3>
         <MainInput
             :value="userInfo.username"
             :valid="usernameIsValid || !formSubmitted"
-            title="ФИО:"
+            :title="`${$t('loginPage.registrationPopup.fullName')}:`"
             name="name"
             @input="setUserName"
         />
@@ -23,14 +25,14 @@
         <MainInput
             :value="userInfo.phone"
             :valid="phoneIsValid || !formSubmitted"
-            title="Телефон:"
+            :title="`${$t('loginPage.registrationPopup.phone')}:`"
             name="phone"
             @input="setPhone"
         />
         <MainInput
             :value="userInfo.password"
             :valid="passwordIsValid || !formSubmitted"
-            title="Пароль:"
+            :title="`${$t('loginPage.registrationPopup.password')}:`"
             type="password"
             name="password"
             @input="setPassword"
@@ -38,7 +40,7 @@
         <MainInput
             :value="userInfo.confirmPassword"
             :valid="confirmPasswordNotEmpty || !formSubmitted"
-            title="Повторите пароль:"
+            :title="`${$t('loginPage.registrationPopup.repeatPassword')}:`"
             type="password"
             name="confirmPassword"
             @input="setConfirmPassword"
@@ -46,10 +48,13 @@
         <input
           type="submit"
           class="form__submit btn blue-btn"
-          value="Зарегистрироваться"
+          :value="$t('loginPage.registrationPopup.submit')"
         />
-        <p class="form-registration__text">Нажимая кнопку, вы соглашаетесь с условиями
-          <a href="#">политики обработки персональных данных</a>
+        <p class="form-registration__text">
+          {{ $t('loginPage.registrationPopup.policy.text') }}
+          <a href="#">
+            {{ $t('loginPage.registrationPopup.policy.link') }}
+          </a>
         </p>
       </form>
     </template>

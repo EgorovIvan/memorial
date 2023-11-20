@@ -6,17 +6,22 @@
   >
     <template #content>
       <form class="form-recover">
-        <h3 class="form-recover__title">Восстановить пароль</h3>
+        <h3 class="form-recover__title">
+          {{ $t('loginPage.passwordRecovery.title') }}
+        </h3>
         <div class="form-recover-wrap">
-          <p>Если вы забыли пароль, введите email. <br>Контрольная строка для смены пароля, а также ваши
-            регистрационные данные, будут высланы вам по электронной почте.</p>
+          <p>{{ $t('loginPage.passwordRecovery.description') }}</p>
           <MainInput
             :value="''"
             title="Email:"
             class="form-recover__input"
             name="email"
           />
-          <input type="submit" class="form__submit blue-btn btn" value="Выслать" title="Зарегистрироваться">
+          <input
+            type="submit"
+            class="form__submit blue-btn btn"
+            :value="$t('loginPage.passwordRecovery.submit')"
+          >
         </div>
       </form>
     </template>
