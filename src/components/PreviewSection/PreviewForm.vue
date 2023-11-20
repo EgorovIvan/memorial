@@ -15,7 +15,7 @@
           :value="userInfo.password"
           :valid="passwordIsValid || !formSubmitted"
           @input="setPassword"
-          title="Пароль:"
+          :title="`${$t('loginPage.previewForm.password')}:`"
           name="password"
           type="password"
       >

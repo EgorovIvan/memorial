@@ -14,6 +14,7 @@ export default {
       "title": "Login in",
       "forgotPassword": "Forgot password",
       "loginButton": "login in",
+      "password": "Password",
       "registerAccount": "Have not an account yet? Register",
     },
     "passwordRecovery": {

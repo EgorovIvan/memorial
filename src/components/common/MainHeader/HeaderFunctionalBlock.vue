@@ -1,6 +1,6 @@
 <template>
   <div class="header-buttons">
-    <button type="button" class="header-buttons__lang">Ru</button>
+    <ChangeLocale class="header-buttons__lang" />
     <button type="button" class="header-buttons__registration btn white-btn">
       {{ $t('header.loginButton') }}
     </button>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-
+import ChangeLocale from "@/components/common/MainHeader/ChangeLocale.vue";
 </script>
 
 <style lang="scss" scoped>
