@@ -38,6 +38,7 @@ export default {
   "notifications": {
     "wrongLogin": "Incorrect password or login entered",
     "serverError": "An error occurred on the server",
+    "emailTaken": "The email has already been taken.",
   },
   "footer": {
     "navigation": {

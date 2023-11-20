@@ -71,9 +71,14 @@ import {useRouter} from "vue-router";
 import {getToken, getMessaging} from "firebase/messaging";
 import requestPermission from "@/utils/requestPermission";
 import getUA from "@/utils/getUA";
+import {useNotificationStore} from "@/store/notificationStore/notificationStore";
+import NotificationTypes from "@/const/NotificationTypes";
+import {useI18n} from "vue-i18n";
 
 const router = useRouter()
+const { t } = useI18n()
 const regStore = useRegistrationStore()
+const notification = useNotificationStore()
 const formSubmitted = ref(false)
 const userInfo = reactive({
   username: '',
@@ -112,9 +117,9 @@ async function registrationUser() {
     const code = e.response?.status;
 
     if (code === 422) {
-      alert('Email уже занят')
+      notification.showNotification(t('notifications.emailTaken'), NotificationTypes.WARNING)
     } else {
-      alert('Произошла ошибка на сервере')
+      notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
     }
   }
 }
