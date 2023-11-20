@@ -39,12 +39,17 @@
 <script setup>
 import MainInput from "@/components/common/MainInput.vue";
 import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
-import {computed, onMounted, reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import api from "@/api/auth/api";
 import getUA from "@/utils/getUA";
 import {useRouter} from "vue-router";
+import {useNotificationStore} from "@/store/notificationStore/notificationStore";
+import {useI18n} from "vue-i18n";
+import NotificationTypes from "@/const/NotificationTypes";
 
 const router = useRouter()
+const { t } = useI18n()
+const { showNotification } = useNotificationStore()
 const regStore = useRegistrationStore()
 const userInfo = reactive({
   email: '',
@@ -76,10 +81,10 @@ async function loginUser() {
     router.push('/')
   } catch (e) {
     const code = e.response?.status;
-     if (code === 404) {
-      alert('Введен неправильно пароль или логин')
+     if (code === 401) {
+      showNotification(t('notifications.wrongLogin'), NotificationTypes.WARNING)
     } else {
-      alert('Произошла ошибка на сервере')
+      showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
     }
   }
 }
@@ -99,16 +104,6 @@ function setPassword(password) {
 function getFcmToken() {
   return localStorage.fcmToken || ''
 }
-
-onMounted(() => {
-
-  const formData = new FormData()
-  formData.append('test', '123');
-  fetch('/123', {
-    method: "POST",
-    body: formData,
-  })
-})
 </script>
 
 <style lang="scss" scoped>
