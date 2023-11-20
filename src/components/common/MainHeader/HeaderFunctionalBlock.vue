@@ -1,7 +1,9 @@
 <template>
   <div class="header-buttons">
     <button type="button" class="header-buttons__lang">Ru</button>
-    <button type="button" class="header-buttons__registration btn white-btn">Регистрация</button>
+    <button type="button" class="header-buttons__registration btn white-btn">
+      {{ $t('header.loginButton') }}
+    </button>
     <button type="button" class="header-buttons__menu">
       <span></span>
       <span></span>

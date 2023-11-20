@@ -2,19 +2,29 @@
   <nav class="header-menu">
     <ul class="menu">
       <li class="menu__item">
-        <a href="#" class="menu__link">Люди</a>
+        <a href="#" class="menu__link">
+          {{ $t('header.navigation.people') }}
+        </a>
       </li>
       <li class="menu__item">
-        <a href="#" class="menu__link">Места</a>
+        <a href="#" class="menu__link">
+          {{ $t('header.navigation.places') }}
+        </a>
       </li>
       <li class="menu__item">
-        <a href="#" class="menu__link">Семейное древо</a>
+        <a href="#" class="menu__link">
+          {{ $t('header.navigation.tree') }}
+        </a>
       </li>
       <li class="menu__item">
-        <a href="#" class="menu__link">Магазин</a>
+        <a href="#" class="menu__link">
+          {{ $t('header.navigation.shop') }}
+        </a>
       </li>
       <li class="menu__item">
-        <a href="#" class="menu__link">Заказы</a>
+        <a href="#" class="menu__link">
+          {{ $t('header.navigation.orders') }}
+        </a>
       </li>
     </ul>
   </nav>
