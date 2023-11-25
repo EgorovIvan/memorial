@@ -61,5 +61,8 @@
     display: flex;
     flex-direction: column;
     margin: 30px 0 0 35px;
+    position: sticky;
+    top: 0;
+    left: 0;
   }
 </style>

@@ -44,7 +44,8 @@ export default {
       "people": "Люди",
       "places": "Места",
       "communities": "Кладбища",
-    }
+    },
+    "yourProfiles": "Ваши профили",
   },
   "notifications": {
     "wrongLogin": "Введен неправильно пароль или логин",

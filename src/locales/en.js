@@ -44,7 +44,8 @@ export default {
       "people": "People",
       "places": "Places",
       "communities": "Communities",
-    }
+    },
+    "yourProfiles": "Your profiles",
   },
   "notifications": {
     "wrongLogin": "Incorrect password or login entered",
