@@ -35,6 +35,17 @@ export default {
       "registerAccount": "Нет аккаунта? Зарегистрироваться",
     },
   },
+  "newsPage": {
+    "sidebar": {
+      "news": "Новости",
+      "tree": "Семейное дерево",
+      "shop": "Магазин",
+      "bookings": "Бронирование",
+      "people": "Люди",
+      "places": "Места",
+      "communities": "Кладбища",
+    }
+  },
   "notifications": {
     "wrongLogin": "Введен неправильно пароль или логин",
     "serverError": "Произошла ошибка на сервере",

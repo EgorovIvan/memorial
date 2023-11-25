@@ -35,6 +35,17 @@ export default {
       "submit": "Registration",
     },
   },
+  "newsPage": {
+    "sidebar": {
+      "news": "News",
+      "tree": "Family Tree",
+      "shop": "Shop",
+      "bookings": "My bookings",
+      "people": "People",
+      "places": "Places",
+      "communities": "Communities",
+    }
+  },
   "notifications": {
     "wrongLogin": "Incorrect password or login entered",
     "serverError": "An error occurred on the server",
