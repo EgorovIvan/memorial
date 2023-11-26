@@ -1,35 +1,56 @@
 <template>
   <div class="profile-slide">
     <div class="profile-slide-wrapper-photo">
-      <img class="profile-slide__photo" :src="photo" alt="photo" />
+      <img
+        v-if="isCreateSlide"
+        class="profile-slide__photo"
+        src="./../../assets/img/plus.svg"
+        alt="plus"
+      />
+      <img
+        v-else
+        class="profile-slide__photo"
+        :src="photo"
+        alt="photo"
+      />
     </div>
-    <p class="profile-slide__years">
+    <p v-if="!isCreateSlide" class="profile-slide__years">
       {{ dateBirth }} - {{ dateDeath }} г.
     </p>
     <p class="profile-slide__name">
-      {{ name }}
+      {{ getName }}
     </p>
   </div>
 </template>
 
 <script setup>
-  defineProps({
+  import {computed} from "vue";
+
+  const props = defineProps({
     photo: {
       type: String,
-      required: true,
+      default: '',
     },
     dateBirth: {
       type: Number,
-      required: true,
+      default: 0,
     },
     dateDeath: {
       type: Number,
-      required: true,
+      default: 0,
     },
     name: {
       type: String,
-      required: true,
+      default: '',
     },
+    isCreateSlide: {
+      type: Boolean,
+      default: false,
+    },
+  })
+
+  const getName = computed(() => {
+    return props.isCreateSlide ? 'Create a profile' : props.name
   })
 </script>
 
@@ -39,6 +60,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    cursor: pointer;
 
     &-wrapper-photo {
       width: 95px;
@@ -46,6 +68,7 @@
       overflow: hidden;
       border-radius: 50%;
       position: relative;
+      background: $light-gray;
     }
 
     &__photo {

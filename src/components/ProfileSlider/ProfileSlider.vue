@@ -39,6 +39,11 @@
             :photo="profile.avatar"
         />
       </SwiperSlide>
+      <SwiperSlide>
+        <ProfileSlide
+          :is-create-slide="true"
+        />
+      </SwiperSlide>
     </Swiper>
   </div>
 </template>
