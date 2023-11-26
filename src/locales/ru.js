@@ -46,6 +46,8 @@ export default {
       "communities": "Кладбища",
     },
     "yourProfiles": "Ваши профили",
+    "relatedProfiles": "Связанные профили",
+    "pets": "Питомцы",
   },
   "notifications": {
     "wrongLogin": "Введен неправильно пароль или логин",

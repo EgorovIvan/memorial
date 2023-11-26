@@ -46,6 +46,8 @@ export default {
       "communities": "Communities",
     },
     "yourProfiles": "Your profiles",
+    "relatedProfiles": "Related profiles",
+    "pets": "Pets",
   },
   "notifications": {
     "wrongLogin": "Incorrect password or login entered",

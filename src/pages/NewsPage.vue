@@ -6,11 +6,11 @@
       />
       <div class="news-content">
         <ProfileSlider
-            titleKey="newsPage.yourProfiles"
+            titleKey="newsPage.relatedProfiles"
             :profiles="data.related_humans"
         />
         <ProfileSlider
-            titleKey="newsPage.yourProfiles"
+            titleKey="newsPage.pets"
             :profiles="data.pets"
         />
       </div>
