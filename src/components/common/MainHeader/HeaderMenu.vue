@@ -4,7 +4,7 @@
       <template v-for="(link, index) in headerLinks" :key="index">
         <li class="menu__item">
           <router-link :to="link.href" class="menu__link">
-            {{ $t('header.navigation.people') }}
+            {{ $t(link.key) }}
           </router-link>
         </li>
       </template>
