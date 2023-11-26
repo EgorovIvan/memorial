@@ -2,7 +2,10 @@
   <div class="profile-slider">
     <div class="profile-slider-header">
       <p class="profile-slider__title">
-        {{ $t(titleKey) }}
+        {{ getTitle }}
+        <template v-if="showCountProfiles">
+          {{ getCountProfiles }}
+        </template>
       </p>
       <div class="profile-slider-navigation">
         <img
@@ -53,10 +56,11 @@
   import 'swiper/css';
   import 'swiper/css/navigation';
   import ProfileSlide from "@/components/ProfileSlider/ProfileSlide.vue";
-  import {ref} from "vue";
+  import {computed, ref} from "vue";
   import {Navigation} from "swiper/modules";
+  import {useI18n} from "vue-i18n";
 
-  defineProps({
+  const props = defineProps({
     titleKey: {
       type: String,
       required: true,
@@ -64,11 +68,25 @@
     profiles: {
       type: Array,
       required: true,
+      default: () => [],
+    },
+    showCountProfiles: {
+      type: Boolean,
+      default: false,
     },
   })
 
+  const { t } = useI18n()
   const prev = ref(null);
   const next = ref(null);
+
+  const getTitle = computed(() => {
+    return t(props.titleKey)
+  })
+
+  const getCountProfiles = computed(() => {
+    return `(${props.profiles.length})`
+  })
 </script>
 
 <style scoped lang="scss">

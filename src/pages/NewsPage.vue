@@ -8,6 +8,7 @@
         <ProfileSlider
             titleKey="newsPage.relatedProfiles"
             :profiles="data.related_humans"
+            :show-count-profiles="true"
         />
         <ProfileSlider
             titleKey="newsPage.pets"
