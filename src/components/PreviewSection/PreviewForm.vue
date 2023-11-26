@@ -47,10 +47,12 @@ import {useNotificationStore} from "@/store/notificationStore/notificationStore"
 import {useI18n} from "vue-i18n";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useCookie} from "@/composables/useCookie";
+import {useClientStore} from "@/store/clientStore/useClientStore";
 
 const router = useRouter()
 const { t } = useI18n()
 const { setCookie } = useCookie()
+const clientStore = useClientStore()
 const { showNotification } = useNotificationStore()
 const regStore = useRegistrationStore()
 const userInfo = reactive({
@@ -79,7 +81,10 @@ async function loginUser() {
       ...userInfo,
       deviceName: getUA(),
     })
+
     setCookie('authToken', res.token)
+    clientStore.setUser(res.user)
+
     router.push('/news')
   } catch (e) {
     const code = e.response?.status;

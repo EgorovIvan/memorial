@@ -74,9 +74,13 @@ import getUA from "@/utils/getUA";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useI18n} from "vue-i18n";
+import {useClientStore} from "@/store/clientStore/useClientStore";
+import {useCookie} from "@/composables/useCookie";
 
 const router = useRouter()
 const { t } = useI18n()
+const { setCookie } = useCookie()
+const clientStore = useClientStore()
 const regStore = useRegistrationStore()
 const notification = useNotificationStore()
 const formSubmitted = ref(false)
@@ -111,8 +115,11 @@ async function registrationUser() {
 
   try {
     const res = await api.registration(userInfo)
-    console.log(res)
-    router.push('/')
+
+    setCookie('authToken', res.token)
+    clientStore.setUser(res.user)
+
+    router.push('/news')
   } catch (e) {
     const code = e.response?.status;
 
