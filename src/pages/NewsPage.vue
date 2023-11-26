@@ -22,16 +22,31 @@
 <script setup>
 import PageWrapper from "@/components/common/PageWrapper.vue";
 import NewsSidebar from "@/components/NewsSidebar/NewsSidebar.vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import ProfileSlider from "@/components/ProfileSlider/ProfileSlider.vue";
 import {onMounted, ref} from "vue";
 import api from "@/api/news/api";
+import NotificationTypes from "@/const/NotificationTypes";
+import {useNotificationStore} from "@/store/notificationStore/notificationStore";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
+const { showNotification } = useNotificationStore()
 const data = ref([])
 
 onMounted(async () => {
-  data.value = (await api.getFeed()).data
+  try {
+    data.value = (await api.getFeed()).data
+  } catch (e) {
+    const code = e.response?.status;
+    if (code === 401) {
+      router.push('/login')
+    } else {
+      showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
+    }
+  }
 })
 </script>
 
