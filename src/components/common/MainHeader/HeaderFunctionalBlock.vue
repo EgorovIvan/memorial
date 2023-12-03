@@ -1,9 +1,7 @@
 <template>
   <div class="header-buttons">
     <ChangeLocale class="header-buttons__lang" />
-    <button type="button" class="header-buttons__registration btn white-btn" @click="openRegPopup">
-      {{ $t('header.loginButton') }}
-    </button>
+    <HeaderAuthWidget />
     <button type="button" class="header-buttons__menu">
       <span></span>
       <span></span>
@@ -14,13 +12,7 @@
 
 <script setup>
 import ChangeLocale from "@/components/common/MainHeader/ChangeLocale.vue";
-import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
-
-const regStore = useRegistrationStore()
-
-function openRegPopup() {
-  regStore.setVisibleRegistrationPopup(true)
-}
+import HeaderAuthWidget from "@/components/common/MainHeader/HeaderAuthWidget.vue";
 </script>
 
 <style lang="scss" scoped>

@@ -6,36 +6,13 @@
 
     <nav class="footer-menu">
       <ul class="menu-list">
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.about') }}
-          </a>
-        </li>
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.tree') }}
-          </a>
-        </li>
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.shop') }}
-          </a>
-        </li>
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.search') }}
-          </a>
-        </li>
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.cemeteries') }}
-          </a>
-        </li>
-        <li class="menu-list__item">
-          <a href="#" class="menu-list__link">
-            {{ $t('footer.navigation.contacts') }}
-          </a>
-        </li>
+        <template v-for="(link, index) in footerLinks" :key="index">
+          <li class="menu-list__item">
+            <router-link :to="link.href" class="menu-list__link">
+              {{ $t(link.key) }}
+            </router-link>
+          </li>
+        </template>
       </ul>
     </nav>
 
@@ -46,7 +23,32 @@
 </template>
 
 <script setup>
-
+  const footerLinks = [
+    {
+      key: 'footer.navigation.about',
+      href: '/about',
+    },
+    {
+      key: 'footer.navigation.tree',
+      href: '/tree',
+    },
+    {
+      key: 'footer.navigation.shop',
+      href: '/shop',
+    },
+    {
+      key: 'footer.navigation.search',
+      href: '/search',
+    },
+    {
+      key: 'footer.navigation.cemeteries',
+      href: '/cemeteries',
+    },
+    {
+      key: 'footer.navigation.contacts',
+      href: '/contacts',
+    },
+  ]
 </script>
 
 <style lang="scss" scoped>

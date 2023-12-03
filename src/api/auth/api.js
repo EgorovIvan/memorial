@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const path = 'https://memorialbook.site/api/v1'
+const path = process.env.VUE_APP_BASE_PATH
 
 export default {
   async registration({ username, email, password, confirmPassword, fcmToken, deviceName, location }) {

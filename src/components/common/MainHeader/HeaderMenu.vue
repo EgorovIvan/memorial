@@ -1,37 +1,40 @@
 <template>
   <nav class="header-menu">
     <ul class="menu">
-      <li class="menu__item">
-        <a href="#" class="menu__link">
-          {{ $t('header.navigation.people') }}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a href="#" class="menu__link">
-          {{ $t('header.navigation.places') }}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a href="#" class="menu__link">
-          {{ $t('header.navigation.tree') }}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a href="#" class="menu__link">
-          {{ $t('header.navigation.shop') }}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a href="#" class="menu__link">
-          {{ $t('header.navigation.orders') }}
-        </a>
-      </li>
+      <template v-for="(link, index) in headerLinks" :key="index">
+        <li class="menu__item">
+          <router-link :to="link.href" class="menu__link">
+            {{ $t(link.key) }}
+          </router-link>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>
 
 <script setup>
-
+  const headerLinks = [
+    {
+      key: 'header.navigation.people',
+      href: '/people',
+    },
+    {
+      key: 'header.navigation.places',
+      href: '/places',
+    },
+    {
+      key: 'header.navigation.tree',
+      href: '/tree',
+    },
+    {
+      key: 'header.navigation.shop',
+      href: '/shop',
+    },
+    {
+      key: 'header.navigation.orders',
+      href: '/orders',
+    },
+  ]
 </script>
 
 <style scoped lang="scss">
