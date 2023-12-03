@@ -30,11 +30,13 @@ export const useProfileStore = defineStore('profile', {
       // })
     },
 
-    async changeProfile(username) {
+    async changeProfile(username, password, confirmPassword) {
       this.user.username = username
       await api.changeProfile({
         username,
         email: this.user.email,
+        password,
+        confirmPassword,
       })
     },
   },

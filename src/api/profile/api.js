@@ -5,12 +5,12 @@ export default {
     return (await api.get('/cabinet/user')).data
   },
 
-  async changeProfile({ username, email, password, password_confirmation, avatar }) {
+  async changeProfile({ username, email, password, confirmPassword, avatar }) {
     return (await api.post('/cabinet/user', {
       username,
       email,
       password: password || null,
-      password_confirmation: password_confirmation || null,
+      password_confirmation: confirmPassword || null,
       avatar: avatar || null,
       _method: 'PUT'
     })).data

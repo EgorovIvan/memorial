@@ -53,6 +53,7 @@ export default {
     "wrongLogin": "Incorrect password or login entered",
     "serverError": "An error occurred on the server",
     "emailTaken": "The email has already been taken.",
+    "passwordMismatch": "Password mismatch",
   },
   "footer": {
     "navigation": {

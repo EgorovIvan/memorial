@@ -53,6 +53,7 @@ export default {
     "wrongLogin": "Введен неправильно пароль или логин",
     "serverError": "Произошла ошибка на сервере",
     "emailTaken": "Email уже занят!",
+    "passwordMismatch": "Пароли не совпадают",
   },
   "footer": {
     "navigation": {

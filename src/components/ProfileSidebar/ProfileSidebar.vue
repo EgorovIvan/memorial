@@ -16,7 +16,7 @@
       </div>
     </div>
     <button
-      @click="showPasswordRecovery"
+      @click="emits('showRecoveryPasswordPopup')"
       type="button"
       id="input-link"
       class="button-change-password white-btn btn"
@@ -31,13 +31,10 @@
 <script setup>
 import {useProfileStore} from "@/store/profileStore/useProfileStore";
 import UserPhoto from "@/components/ProfileSidebar/UserPhoto.vue";
-import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
+
+const emits = defineEmits([
+    'showRecoveryPasswordPopup',
+])
 
 const profileStore = useProfileStore()
-const regStore = useRegistrationStore()
-
-function showPasswordRecovery() {
-  regStore.setVisiblePasswordRecoverPopup(true)
-}
-
 </script>

@@ -61,7 +61,6 @@
 <style scoped lang="scss">
   .input-wrap {
     width: 100%;
-    margin-top: 18px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

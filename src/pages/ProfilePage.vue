@@ -6,17 +6,24 @@
         <h3 class="edit__title">Управление аккаунтом</h3>
 
         <div class="edit-wrap">
-          <ProfileSidebar />
+          <ProfileSidebar
+            @showRecoveryPasswordPopup="visibleRecoveryPasswordPopup = true"
+          />
           <BasicInfoProfile />
         </div>
       </section>
     </div>
+    <ProfileRecoveryPasswordPopup
+      :visible="visibleRecoveryPasswordPopup"
+      @close="visibleRecoveryPasswordPopup = false"
+      @changePassword="changePassword"
+    />
   </PageWrapper>
 </template>
 
 <script setup>
 import PageWrapper from "@/components/common/PageWrapper.vue";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 import BreadcrumbsLine from "@/components/common/BreadcrumbsLine.vue";
 import ProfileSidebar from "@/components/ProfileSidebar/ProfileSidebar.vue";
 import BasicInfoProfile from "@/components/BasicInfoProfile/BasicInfoProfile.vue";
@@ -24,10 +31,26 @@ import {useProfileStore} from "@/store/profileStore/useProfileStore";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import {useI18n} from "vue-i18n";
+import ProfileRecoveryPasswordPopup from "@/components/ProfileRecoveryPasswordPopup/ProfileRecoveryPasswordPopup.vue";
 
 const { t } = useI18n()
 const profileStore = useProfileStore()
 const notification = useNotificationStore()
+const visibleRecoveryPasswordPopup = ref(false)
+
+async function changePassword({password, confirmPassword}) {
+  if (password !== confirmPassword) {
+    return notification.showNotification(t('notifications.passwordMismatch'), NotificationTypes.WARNING)
+  }
+  try {
+    await profileStore.changeProfile(profileStore.user.username, password, confirmPassword)
+    visibleRecoveryPasswordPopup.value = false
+    notification.showNotification(t('notifications.serverError'), NotificationTypes.SUCCESS)
+  } catch (e) {
+    console.log(e)
+    notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
+  }
+}
 
 onMounted(async () => {
   try {
