@@ -25,10 +25,10 @@ import NewsSidebar from "@/components/NewsSidebar/NewsSidebar.vue";
 import {useRoute, useRouter} from "vue-router";
 import ProfileSlider from "@/components/ProfileSlider/ProfileSlider.vue";
 import {onMounted, ref} from "vue";
-import api from "@/api/news/api";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import {useI18n} from "vue-i18n";
+import api from "@/api/news/api";
 
 const { t } = useI18n()
 const route = useRoute()

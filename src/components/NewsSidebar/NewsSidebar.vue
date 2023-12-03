@@ -64,5 +64,9 @@
     position: sticky;
     top: 0;
     left: 0;
+
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
   }
 </style>

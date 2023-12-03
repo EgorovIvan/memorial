@@ -24,7 +24,8 @@
     </div>
     <Swiper
         :modules="[Navigation]"
-        :slides-per-view="4"
+        :slides-per-view="1"
+        :breakpoints="breakpoints"
         :navigation="{
           prevEl: prev,
           nextEl: next,
@@ -80,6 +81,17 @@
   const prev = ref(null);
   const next = ref(null);
 
+  const breakpoints = computed(() => {
+    return {
+      768: {
+        slidesPerView: 4,
+      },
+      480: {
+        slidesPerView: 2,
+      },
+    }
+  })
+
   const getTitle = computed(() => {
     return t(props.titleKey)
   })
@@ -96,6 +108,22 @@
     padding: 14px 21px 26px;
     border: 1px solid $light-gray;
     border-radius: 7px;
+    min-width: 700px;
+
+    @media screen and (max-width: 997px) {
+      max-width: 500px;
+      min-width: 500px;
+    }
+
+    @media screen and (max-width: 695px) {
+      min-width: 400px;
+      max-width: 400px;
+    }
+
+    @media screen and (max-width: 575px) {
+      max-width: 300px;
+      min-width: 300px;
+    }
 
     &-header {
       display: flex;
