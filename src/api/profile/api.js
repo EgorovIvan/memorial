@@ -12,6 +12,7 @@ export default {
       password: password || null,
       password_confirmation: password_confirmation || null,
       avatar: avatar || null,
+      _method: 'PUT'
     })).data
   },
 }

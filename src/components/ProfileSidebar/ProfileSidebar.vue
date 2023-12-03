@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-
 import {useProfileStore} from "@/store/profileStore/useProfileStore";
 import UserPhoto from "@/components/ProfileSidebar/UserPhoto.vue";
 import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";

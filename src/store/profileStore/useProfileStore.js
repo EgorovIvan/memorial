@@ -29,5 +29,13 @@ export const useProfileStore = defineStore('profile', {
       //   avatar: photo,
       // })
     },
+
+    async changeProfile(username) {
+      this.user.username = username
+      await api.changeProfile({
+        username,
+        email: this.user.email,
+      })
+    },
   },
 })
