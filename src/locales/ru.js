@@ -49,11 +49,44 @@ export default {
     "relatedProfiles": "Связанные профили",
     "pets": "Питомцы",
   },
+  "profilePage": {
+    "title": "Управление аккаунтом",
+    "passwordRecovery": {
+      "newPassword": "Новый пароль:",
+      "confirmPassword": "Подтверждение пароля:",
+    },
+    "sidebar": {
+      "title": "Создатель профилей",
+      "profiles": "Профилей",
+      "accesses": "Доступов",
+      "changePasswordButton": "Смена пароля",
+      "deleteAccountButton": "Удалить аккаунт",
+      "changePhoto": "Выберите фото",
+    },
+    "basicInfo": {
+      "title": "Основная информация",
+      "firstName": "Имя:",
+      "middleName": "Отчество:",
+      "lastName": "Фамилия:",
+      "email": "Email:",
+      "saveButton": "Сохранить",
+    },
+    "profileAccess": {
+      "title": "Доступ к профилям",
+      "roles": {
+        "admin": "Администратор",
+        "fullAccess": "Полный доступ",
+        "waitConfirm": "Ожидает подтверждения",
+      },
+      "share": "Поделиться доступом к профилю",
+    },
+  },
   "notifications": {
     "wrongLogin": "Введен неправильно пароль или логин",
     "serverError": "Произошла ошибка на сервере",
     "emailTaken": "Email уже занят!",
     "passwordMismatch": "Пароли не совпадают",
+    "passwordChangedSuccess": "Пароль успешно изменен",
   },
   "footer": {
     "navigation": {

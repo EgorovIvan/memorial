@@ -3,7 +3,7 @@
     <div class="profile">
       <section class="edit">
         <BreadcrumbsLine />
-        <h3 class="edit__title">Управление аккаунтом</h3>
+        <h3 class="edit__title">{{ t('profilePage.title') }}</h3>
 
         <div class="edit-wrap">
           <ProfileSidebar
@@ -45,7 +45,7 @@ async function changePassword({password, confirmPassword}) {
   try {
     await profileStore.changeProfile(profileStore.user.username, password, confirmPassword)
     visibleRecoveryPasswordPopup.value = false
-    notification.showNotification(t('notifications.serverError'), NotificationTypes.SUCCESS)
+    notification.showNotification(t('notifications.passwordChangedSuccess'), NotificationTypes.SUCCESS)
   } catch (e) {
     console.log(e)
     notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)

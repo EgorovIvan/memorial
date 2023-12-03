@@ -13,14 +13,14 @@
           <p>{{ $t('loginPage.passwordRecovery.description') }}</p>
           <MainInput
               :value="password"
-              title="Новый пароль:"
+              :title="t('profilePage.passwordRecovery.newPassword')"
               class="form-recover__input"
               name="password"
               @input="setPassword"
           />
           <MainInput
               :value="confirmPassword"
-              title="Подтверждение пароля:"
+              :title="t('profilePage.passwordRecovery.confirmPassword')"
               class="form-recover__input"
               name="passwordConfirm"
               @input="setConfirmPassword"
@@ -40,6 +40,7 @@
 import AuthPopup from "@/components/common/AuthPopup.vue";
 import MainInput from "@/components/common/MainInput.vue";
 import {ref} from "vue";
+import {useI18n} from "vue-i18n";
 
 const props = defineProps({
   visible: {
@@ -53,6 +54,7 @@ const emits = defineEmits([
     'changePassword',
 ])
 
+const { t } = useI18n()
 const password = ref('')
 const confirmPassword = ref('')
 

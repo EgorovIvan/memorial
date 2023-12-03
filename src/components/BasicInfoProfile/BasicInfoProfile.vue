@@ -1,23 +1,24 @@
 <template>
   <div class="edit-profile">
-    <h4 class="edit-profile__title">Основная информация</h4>
-
+    <h4 class="edit-profile__title">
+      {{ t('profilePage.basicInfo.title') }}
+    </h4>
     <div class="edit-profile-wrap grid-col-2">
       <MainInput
         :value="name"
-        title="Имя:"
+        :title="t('profilePage.basicInfo.firstName')"
         name="name"
         @input="setName"
       />
       <MainInput
           :value="lastName"
-          title="Отчество:"
+          :title="t('profilePage.basicInfo.middleName')"
           name="lastName"
           @input="setLastName"
       />
       <MainInput
           :value="surname"
-          title="Фамилия:"
+          :title="t('profilePage.basicInfo.lastName')"
           name="surname"
           @input="setSurname"
       />
@@ -32,10 +33,9 @@
         class="button-save btn blue-btn"
         @click="saveChanges"
       >
-        Сохранить
+        {{ t('profilePage.basicInfo.saveButton') }}
       </button>
     </div>
-
     <AccessProfiles />
   </div>
 </template>

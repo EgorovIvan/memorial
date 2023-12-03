@@ -6,7 +6,7 @@
         <span
           v-if="!profileStore.user.avatar"
           class="preview-avatar-wrap__text">
-          Выберите фото
+          {{ t('profilePage.sidebar.changePhoto') }}
         </span>
       </label>
       <label class="preview-avatar__icon" for="change-avatar">
