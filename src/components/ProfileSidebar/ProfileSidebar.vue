@@ -15,7 +15,15 @@
         <span class="info-profile-value-text">Доступов</span>
       </div>
     </div>
-    <button type="button" id="input-link" class="button-change-password white-btn btn" title="Сменить пароль">Смена пароля</button>
+    <button
+      @click="showPasswordRecovery"
+      type="button"
+      id="input-link"
+      class="button-change-password white-btn btn"
+      title="Сменить пароль"
+    >
+      Смена пароля
+    </button>
     <a href="#" class="delete-profile" title="Удалить аккаунт">Удалить аккаунт</a>
   </div>
 </template>
@@ -24,7 +32,13 @@
 
 import {useProfileStore} from "@/store/profileStore/useProfileStore";
 import UserPhoto from "@/components/ProfileSidebar/UserPhoto.vue";
+import {useRegistrationStore} from "@/store/registrationStore/useRegistrationStore";
 
 const profileStore = useProfileStore()
+const regStore = useRegistrationStore()
+
+function showPasswordRecovery() {
+  regStore.setVisiblePasswordRecoverPopup(true)
+}
 
 </script>
