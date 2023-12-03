@@ -20,8 +20,22 @@ import {onMounted} from "vue";
 import BreadcrumbsLine from "@/components/common/BreadcrumbsLine.vue";
 import ProfileSidebar from "@/components/ProfileSidebar/ProfileSidebar.vue";
 import BasicInfoProfile from "@/components/BasicInfoProfile/BasicInfoProfile.vue";
+import {useProfileStore} from "@/store/profileStore/useProfileStore";
+import NotificationTypes from "@/const/NotificationTypes";
+import {useNotificationStore} from "@/store/notificationStore/notificationStore";
+import {useI18n} from "vue-i18n";
+
+const { t } = useI18n()
+const profileStore = useProfileStore()
+const notification = useNotificationStore()
 
 onMounted(async () => {
+  try {
+    await profileStore.getProfileInfo()
+  } catch (e) {
+    console.log(e)
+    notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
+  }
 })
 </script>
 

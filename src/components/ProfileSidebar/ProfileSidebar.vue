@@ -16,16 +16,16 @@
       <button type="button" class="delete-avatar hide">Удалить фото</button>
     </div>
     <div class="info-profile-name-wrap">
-      <h6 class="info-profile__name">Алексей Владимирович Норка</h6>
+      <h6 class="info-profile__name">{{ profileStore.user.username }}</h6>
       <span class="info-profile__status">Создатель профилей</span>
     </div>
     <div class="info-profile-value">
       <div class="info-profile-value-wrap">
-        <span class="info-profile-value-num">54</span>
+        <span class="info-profile-value-num">{{ profileStore.user.profiles_count }}</span>
         <span class="info-profile-value-text">Профилей</span>
       </div>
       <div class="info-profile-value-wrap">
-        <span class="info-profile-value-num">7</span>
+        <span class="info-profile-value-num">{{ profileStore.user.accesses_count }}</span>
         <span class="info-profile-value-text">Доступов</span>
       </div>
     </div>
@@ -35,5 +35,9 @@
 </template>
 
 <script setup>
+
+import {useProfileStore} from "@/store/profileStore/useProfileStore";
+
+const profileStore = useProfileStore()
 
 </script>
