@@ -49,6 +49,13 @@ export default {
     "relatedProfiles": "Связанные профили",
     "pets": "Питомцы",
   },
+  "mobileNavigation": {
+    "people": "Люди",
+    "places": "Места",
+    "home": "Главная",
+    "communities": "Сообщества",
+    "account": "Аккаунт",
+  },
   "profilePage": {
     "title": "Управление аккаунтом",
     "passwordRecovery": {

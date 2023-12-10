@@ -51,6 +51,13 @@ export default {
     "cemetery": "Cemetery",
     "communities": "Communities",
   },
+  "mobileNavigation": {
+    "people": "People",
+    "places": "Places",
+    "home": "Home",
+    "communities": "Communities",
+    "account": "Account",
+  },
   "profilePage": {
     "title": "Account management",
     "passwordRecovery": {
