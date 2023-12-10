@@ -24,7 +24,7 @@
     </div>
     <Swiper
         :modules="[Navigation]"
-        :slides-per-view="1"
+        :slides-per-view="'auto'"
         :breakpoints="breakpoints"
         space-between="10"
         :navigation="{
@@ -87,9 +87,6 @@
     return {
       768: {
         slidesPerView: 5,
-      },
-      480: {
-        slidesPerView: 2,
       },
     }
   })

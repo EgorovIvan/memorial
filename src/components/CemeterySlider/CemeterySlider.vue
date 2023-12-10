@@ -91,9 +91,6 @@ const breakpoints = computed(() => {
     768: {
       slidesPerView: 4,
     },
-    480: {
-      slidesPerView: 2,
-    },
   }
 })
 

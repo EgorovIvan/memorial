@@ -2,7 +2,7 @@
   <PageWrapper>
     <div class="news">
       <NewsSidebar
-        :active-link="route.path"
+          :active-link="route.path"
       />
       <div class="news-content">
         <ProfileSlider
@@ -10,10 +10,19 @@
             :profiles="data.related_humans"
             :show-count-profiles="true"
         />
+        <CemeterySlider
+          titleKey="newsPage.cemetery"
+          :profiles="data.cemeteries"
+        />
         <ProfileSlider
             titleKey="newsPage.pets"
             :profiles="data.pets"
         />
+        <CemeterySlider
+            titleKey="newsPage.communities"
+            :profiles="data.communities"
+        />
+        <MobileNavigation />
       </div>
     </div>
   </PageWrapper>
@@ -29,11 +38,13 @@ import NotificationTypes from "@/const/NotificationTypes";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import {useI18n} from "vue-i18n";
 import api from "@/api/news/api";
+import CemeterySlider from "@/components/CemeterySlider/CemeterySlider.vue";
+import MobileNavigation from "@/components/common/MobileNavigation/MobileNavigation.vue";
 
-const { t } = useI18n()
+const {t} = useI18n()
 const route = useRoute()
 const router = useRouter()
-const { showNotification } = useNotificationStore()
+const {showNotification} = useNotificationStore()
 const data = ref([])
 
 onMounted(async () => {
@@ -66,6 +77,16 @@ onMounted(async () => {
     flex-direction: column;
     gap: 15px;
     justify-self: center;
+  }
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+
+    .news-content {
+      max-width: 100%;
+      padding: 0 20px;
+    }
   }
 }
 </style>
