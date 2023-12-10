@@ -26,6 +26,7 @@
         :modules="[Navigation]"
         :slides-per-view="1"
         :breakpoints="breakpoints"
+        space-between="10"
         :navigation="{
           prevEl: prev,
           nextEl: next,
@@ -35,6 +36,7 @@
           v-for="profile in profiles"
           :key="profile.id"
           :virtualIndex="profile.id"
+          class="profile-slide"
       >
         <ProfileSlide
             :name="profile.full_name"
@@ -43,7 +45,7 @@
             :photo="profile.avatar"
         />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide class="profile-slide">
         <ProfileSlide
           :is-create-slide="true"
         />
@@ -84,7 +86,7 @@
   const breakpoints = computed(() => {
     return {
       768: {
-        slidesPerView: 4,
+        slidesPerView: 5,
       },
       480: {
         slidesPerView: 2,
@@ -116,13 +118,8 @@
     }
 
     @media screen and (max-width: 695px) {
-      min-width: 400px;
-      max-width: 400px;
-    }
-
-    @media screen and (max-width: 575px) {
-      max-width: 300px;
-      min-width: 300px;
+      max-width: 100%;
+      min-width: initial;
     }
 
     &-header {
@@ -152,5 +149,9 @@
         transform: rotate(180deg);
       }
     }
+  }
+
+  .profile-slide {
+    max-width: 100px;
   }
 </style>

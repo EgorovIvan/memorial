@@ -48,6 +48,8 @@ export default {
     "yourProfiles": "Your profiles",
     "relatedProfiles": "Related profiles",
     "pets": "Pets",
+    "cemetery": "Cemetery",
+    "communities": "Communities",
   },
   "profilePage": {
     "title": "Account management",

@@ -63,10 +63,10 @@
     cursor: pointer;
 
     &-wrapper-photo {
-      width: 95px;
-      height: 95px;
+      width: 100px;
+      height: 135px;
       overflow: hidden;
-      border-radius: 50%;
+      border-radius: 5px;
       position: relative;
       background: $light-gray;
     }
