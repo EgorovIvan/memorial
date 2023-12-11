@@ -74,6 +74,7 @@ export default {
     },
     "basicInfo": {
       "title": "Primary information",
+      "username": "Username:",
       "firstName": "First name:",
       "middleName": "Middle name:",
       "lastName": "Last name:",

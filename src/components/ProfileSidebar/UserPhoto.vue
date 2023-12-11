@@ -34,8 +34,9 @@
     const photo = event.target.files[0]
     if (!photo) return
     const photoBackground = window.URL.createObjectURL(photo);
+    profileStore.setPhoto(photoBackground)
     try {
-      profileStore.changePhoto(photoBackground)
+      await profileStore.changePhoto(photo)
     } catch (e) {
       console.log(e)
       notificationStore.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)

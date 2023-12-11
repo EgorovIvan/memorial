@@ -5,14 +5,16 @@ export default {
     return (await api.get('/cabinet/user')).data
   },
 
-  async changeProfile({ username, email, password, confirmPassword, avatar }) {
-    return (await api.post('/cabinet/user', {
-      username,
-      email,
-      password: password || null,
-      password_confirmation: confirmPassword || null,
-      avatar: avatar || null,
-      _method: 'PUT'
+  async changeProfile({ username, email, password, confirmPassword, avatar = '' }) {
+    const body = new FormData()
+    body.append('username', username)
+    body.append('email', email)
+    body.append('password', password)
+    body.append('password_confirmation', confirmPassword)
+    body.append('avatar', avatar)
+    body.append('_method', 'PUT')
+    return (await api.post('/cabinet/user', body, {
+      "Content-Type": 'multipart/form-data'
     })).data
   },
 }

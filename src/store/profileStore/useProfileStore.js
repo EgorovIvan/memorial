@@ -16,24 +16,33 @@ export const useProfileStore = defineStore('profile', {
   },
   getters: {},
   actions: {
+    setPhoto(photo) {
+      this.user.avatar = photo
+    },
+    setUsername(name) {
+      this.user.username = name
+    },
+    setEmail(email) {
+      this.user.email = email
+    },
     async getProfileInfo() {
       const { user } = await api.getProfileInfo()
       this.user = user
     },
 
     async changePhoto(photo) {
-      this.user.avatar = photo
-      // await api.changeProfile({
-      //   username: this.user.username,
-      //   email: this.user.email,
-      //   avatar: photo,
-      // })
+      await api.changeProfile({
+        username: this.user.username,
+        email: this.user.email,
+        password: '',
+        confirmPassword: '',
+        avatar: photo,
+      })
     },
 
-    async changeProfile(username, password, confirmPassword) {
-      this.user.username = username
+    async changeProfile(password, confirmPassword) {
       await api.changeProfile({
-        username,
+        username: this.user.username,
         email: this.user.email,
         password,
         confirmPassword,

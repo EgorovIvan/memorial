@@ -5,27 +5,16 @@
     </h4>
     <div class="edit-profile-wrap grid-col-2">
       <MainInput
-        :value="name"
-        :title="t('profilePage.basicInfo.firstName')"
-        name="name"
-        @input="setName"
+          :value="getUsername"
+          :title="t('profilePage.basicInfo.username')"
+          name="username"
+          @input="value => username = value"
       />
       <MainInput
-          :value="lastName"
-          :title="t('profilePage.basicInfo.middleName')"
-          name="lastName"
-          @input="setLastName"
-      />
-      <MainInput
-          :value="surname"
-          :title="t('profilePage.basicInfo.lastName')"
-          name="surname"
-          @input="setSurname"
-      />
-      <MainInput
-        value="email"
+        :value="getEmail"
         title="Email:"
         name="email"
+        @input="value => email = value"
       />
       <div></div>
       <button
@@ -43,38 +32,26 @@
 <script setup>
 import MainInput from "@/components/common/MainInput.vue";
 import AccessProfiles from "@/components/BasicInfoProfile/AccessProfiles.vue";
-import {computed, ref} from "vue";
 import {useProfileStore} from "@/store/profileStore/useProfileStore";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useI18n} from "vue-i18n";
+import {computed, ref} from "vue";
 
 const profileStore = useProfileStore()
 const notification = useNotificationStore()
 const { t } = useI18n()
-const name = ref('')
-const lastName = ref('')
-const surname = ref('')
+const username = ref('')
+const email = ref('')
 
-const getUsername = computed(() => {
-  return `${name.value} ${lastName.value} ${surname.value}`.trim()
-})
-
-function setName(changedName) {
-  name.value = changedName
-}
-
-function setSurname(name) {
-  surname.value = name
-}
-
-function setLastName(name) {
-  lastName.value = name
-}
+const getUsername = computed(() => username.value || profileStore.user.username)
+const getEmail = computed(() => email.value || profileStore.user.email)
 
 async function saveChanges() {
   try {
-    await profileStore.changeProfile(getUsername.value)
+    profileStore.setUsername(getUsername.value)
+    profileStore.setEmail(getEmail.value)
+    await profileStore.changeProfile()
   } catch (e) {
     notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
   }

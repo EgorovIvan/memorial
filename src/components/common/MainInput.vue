@@ -6,6 +6,7 @@
       <input
         :type="type"
         :name="name"
+        :value="value"
         class="input-text"
         @input="emits('input', $event.target.value)"
       />
