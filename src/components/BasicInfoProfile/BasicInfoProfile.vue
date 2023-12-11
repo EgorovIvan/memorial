@@ -52,6 +52,7 @@ async function saveChanges() {
     profileStore.setUsername(getUsername.value)
     profileStore.setEmail(getEmail.value)
     await profileStore.changeProfile()
+    notification.showNotification(t('notifications.successChanged'), NotificationTypes.SUCCESS)
   } catch (e) {
     notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
   }

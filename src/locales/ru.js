@@ -94,6 +94,7 @@ export default {
     "emailTaken": "Email уже занят!",
     "passwordMismatch": "Пароли не совпадают",
     "passwordChangedSuccess": "Пароль успешно изменен",
+    "successChanged": "Успешно изменено",
   },
   "footer": {
     "navigation": {

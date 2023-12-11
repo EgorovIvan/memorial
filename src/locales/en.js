@@ -97,6 +97,7 @@ export default {
     "emailTaken": "The email has already been taken.",
     "passwordMismatch": "Password mismatch",
     "passwordChangedSuccess": "Password will changed",
+    "successChanged": "Successfully changed",
   },
   "footer": {
     "navigation": {
