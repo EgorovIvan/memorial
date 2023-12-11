@@ -43,7 +43,7 @@ async function changePassword({password, confirmPassword}) {
     return notification.showNotification(t('notifications.passwordMismatch'), NotificationTypes.WARNING)
   }
   try {
-    await profileStore.changeProfile(profileStore.user.username, password, confirmPassword)
+    await profileStore.changeProfile(password, confirmPassword)
     visibleRecoveryPasswordPopup.value = false
     notification.showNotification(t('notifications.passwordChangedSuccess'), NotificationTypes.SUCCESS)
   } catch (e) {

@@ -15,6 +15,7 @@
               :value="password"
               :title="t('profilePage.passwordRecovery.newPassword')"
               class="form-recover__input"
+              type="password"
               name="password"
               @input="setPassword"
           />
@@ -23,6 +24,7 @@
               :title="t('profilePage.passwordRecovery.confirmPassword')"
               class="form-recover__input"
               name="passwordConfirm"
+              type="password"
               @input="setConfirmPassword"
           />
           <input
