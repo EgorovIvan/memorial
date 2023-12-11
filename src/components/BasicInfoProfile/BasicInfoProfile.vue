@@ -41,11 +41,11 @@ import {computed, ref} from "vue";
 const profileStore = useProfileStore()
 const notification = useNotificationStore()
 const { t } = useI18n()
-const username = ref('')
-const email = ref('')
+const username = ref(null)
+const email = ref(null)
 
-const getUsername = computed(() => username.value || profileStore.user.username)
-const getEmail = computed(() => email.value || profileStore.user.email)
+const getUsername = computed(() => username.value === null ? profileStore.user.username : username.value)
+const getEmail = computed(() => email.value === null ? profileStore.user.email : email.value)
 
 async function saveChanges() {
   try {
