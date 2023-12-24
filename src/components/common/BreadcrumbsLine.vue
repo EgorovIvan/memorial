@@ -1,17 +1,24 @@
 <template>
   <ul class="breadcrumbs">
-    <li class="breadcrumbs__item">
-      <a href="#" class="breadcrumbs__link">Главная</a>
-    </li>
-    <li class="breadcrumbs__item">
-      <a href="#" class="breadcrumbs__link">Личный кабинет</a>
-    </li>
-    <li class="breadcrumbs__item">
-      <a class="breadcrumbs__link">Управление аккаунтом</a>
-    </li>
+    <template
+      v-for="(link, index) in links"
+      :key="index"
+    >
+      <BreadcrumbsLink
+        :href="link.href"
+        :text="link.text"
+      />
+    </template>
   </ul>
 </template>
 
 <script setup>
+import BreadcrumbsLink from "@/components/common/BreadcrumbsLink.vue";
 
+defineProps({
+  links: {
+    type: Array,
+    required: true,
+  },
+})
 </script>
