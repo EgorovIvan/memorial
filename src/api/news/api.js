@@ -1,15 +1,7 @@
-import axios from "axios";
-import {useCookie} from "@/composables/useCookie";
-
-const path = process.env.VUE_APP_BASE_PATH
-const token = useCookie().getCookie('authToken')
+import {api} from "@/api/axiosConfig";
 
 export default {
   async getFeed() {
-    return (await axios.get(`${path}/feed`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      }
-    })).data
+    return (await api.get('/feed')).data
   },
 }

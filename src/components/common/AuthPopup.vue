@@ -47,7 +47,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 100;
+  z-index: 10000;
 }
 
 .preview-modal.open {
