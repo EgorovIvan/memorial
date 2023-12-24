@@ -1,25 +1,37 @@
 <template>
   <ul class="steeps-nav">
-    <li class="steeps-nav__item">
-      <i class="steeps-nav__icon"></i>
-      <span class="steeps-nav__title">Шаг 1</span>
-      <p class="steeps-nav__desc">Основная информация</p>
-    </li>
-    <li class="steeps-nav__item active current">
-      <i class="steeps-nav__icon"></i>
-      <span class="steeps-nav__title">Шаг 2</span>
-      <p class="steeps-nav__desc">Описание</p>
-    </li>
-    <li class="steeps-nav__item">
-      <i class="steeps-nav__icon"></i>
-      <span class="steeps-nav__title">Шаг 3</span>
-      <p class="steeps-nav__desc">Публикация</p>
-    </li>
+    <template
+      v-for="(link, index) in links"
+      :key="index"
+    >
+      <CreateProfileNavigationLink
+        :title="link.title"
+        :active="index === activeIndex"
+        :desc="link.desc"
+        @click="emits('clickLink', index)"
+      />
+    </template>
   </ul>
 </template>
 
 <script setup>
+import CreateProfileNavigationLink
+  from "@/components/CreateProfile/CreateProfileNavigation/CreateProfileNavigationLink.vue";
 
+defineProps({
+  links: {
+    type: Array,
+    required: true,
+  },
+  activeIndex: {
+    type: Number,
+    required: true,
+  },
+})
+
+const emits = defineEmits([
+  'clickLink',
+])
 </script>
 
 <style lang="scss" scoped>
