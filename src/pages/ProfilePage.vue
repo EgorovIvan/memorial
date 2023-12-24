@@ -2,7 +2,9 @@
   <PageWrapper>
     <div class="profile">
       <section class="edit">
-        <BreadcrumbsLine />
+        <BreadcrumbsLine
+          :links="breadCrumbsLinks"
+        />
         <h3 class="edit__title">{{ t('profilePage.title') }}</h3>
 
         <div class="edit-wrap">
@@ -37,6 +39,20 @@ const { t } = useI18n()
 const profileStore = useProfileStore()
 const notification = useNotificationStore()
 const visibleRecoveryPasswordPopup = ref(false)
+const breadCrumbsLinks = [
+  {
+    text: 'Главная',
+    href: '/',
+  },
+  {
+    text: 'Личный кабинет',
+    href: '/profile',
+  },
+  {
+    text: 'Управление аккаунтом',
+    href: '/account',
+  },
+]
 
 async function changePassword({password, confirmPassword}) {
   if (password !== confirmPassword) {
