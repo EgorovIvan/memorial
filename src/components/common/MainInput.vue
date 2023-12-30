@@ -7,6 +7,7 @@
         :type="type"
         :name="name"
         :value="value"
+        :placeholder="placeholder"
         class="input-text"
         @input="emits('input', $event.target.value)"
       />
@@ -45,6 +46,10 @@
     name: {
       type: String,
       required: true,
+    },
+    placeholder: {
+      type: String,
+      default: '',
     },
   })
 
