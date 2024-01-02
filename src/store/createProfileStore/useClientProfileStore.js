@@ -13,6 +13,7 @@ export const useCreateProfileStore = defineStore('createProfile', {
         dateDeath: '',
         burialPlace: '',
         causeDeath: '',
+        additionalPhotos: [],
       },
     }
   },
@@ -47,6 +48,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
     },
     setCauseDeath(cause) {
       this.profile.causeDeath = cause;
+    },
+    addAdditionalPhoto(file) {
+      this.profile.additionalPhotos.push(file)
     },
   },
 });

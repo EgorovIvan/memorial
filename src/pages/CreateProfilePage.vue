@@ -33,6 +33,7 @@ import CreateProfileNavigation from "@/components/CreateProfile/CreateProfileNav
 import BreadcrumbsLine from "@/components/common/BreadcrumbsLine.vue";
 import PrimaryInfo from "@/components/CreateProfile/PrimaryInfo/PrimaryInfo.vue";
 import {ref} from "vue";
+import DescriptionSection from "@/components/CreateProfile/DescriptionSection/DescriptionSection.vue";
 
 const breadcrumbsLinks = [
   {
@@ -60,6 +61,7 @@ const navigation = ref([
   {
     title: 'Шаг 2',
     desc: 'Описание',
+    component: DescriptionSection,
   },
   {
     title: 'Шаг 3',
