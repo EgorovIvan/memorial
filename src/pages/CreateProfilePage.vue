@@ -14,10 +14,10 @@
           class="profile__navigation"
         />
         <div class="wrapper">
-          <component :is="navigation[activeIndex].component" />
-          <button class="save-and-next btn blue-btn">
-            Сохранить и продолжить
-          </button>
+          <component
+            :is="navigation[activeIndex].component"
+            @nextStep="activeIndex++"
+          />
         </div>
         <p class="profile__text">
           Давайте создавать и хранить историю вместе? Для начала необходимо заполнить основную информацию профиля.
@@ -34,6 +34,7 @@ import BreadcrumbsLine from "@/components/common/BreadcrumbsLine.vue";
 import PrimaryInfo from "@/components/CreateProfile/PrimaryInfo/PrimaryInfo.vue";
 import {ref} from "vue";
 import DescriptionSection from "@/components/CreateProfile/DescriptionSection/DescriptionSection.vue";
+import PostingSection from "@/components/CreateProfile/PostingSection/PostingSection.vue";
 
 const breadcrumbsLinks = [
   {
@@ -66,6 +67,7 @@ const navigation = ref([
   {
     title: 'Шаг 3',
     desc: 'Публикация',
+    component: PostingSection,
   },
 ])
 

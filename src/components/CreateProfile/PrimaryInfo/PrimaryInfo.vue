@@ -7,6 +7,7 @@
         name="name"
         :value="createProfileStore.profile.name"
         placeholder="Иван"
+        :valid="nameIsValid || !submit"
         @input="createProfileStore.setName"
       />
 
@@ -15,6 +16,7 @@
           name="surname"
           :value="createProfileStore.profile.surname"
           placeholder="Иванович"
+          :valid="surnameIsValid || !submit"
           @input="createProfileStore.setSurname"
       />
 
@@ -23,6 +25,7 @@
           name="lastname"
           :value="createProfileStore.profile.lastname"
           placeholder="Иванов"
+          :valid="lastNameIsValid || !submit"
           @input="createProfileStore.setLastname"
       />
     </div>
@@ -31,7 +34,9 @@
           title="Дата рождения:"
           name="date_birth"
           :value="createProfileStore.profile.dateBirth"
+          :mask="'##.##.####'"
           placeholder="дд.мм.гггг"
+          :valid="dateBirthIsValid || !submit"
           @input="createProfileStore.setDateBirth"
       />
 
@@ -40,13 +45,16 @@
           name="place_birth"
           :value="createProfileStore.profile.placeBirth"
           @input="createProfileStore.setPlaceBirth"
+          :valid="placeBirthIsValid || !submit"
       />
 
       <MainInput
           title="Дата смерти:"
           name="date_death"
           :value="createProfileStore.profile.dateDeath"
+          :mask="'##.##.####'"
           placeholder="дд.мм.гггг"
+          :valid="dateDeathIsValid || !submit"
           @input="createProfileStore.setDateDeath"
       />
 
@@ -61,99 +69,46 @@
       <MainInput
           title="Причина смерти:"
           name="cause_death"
+          :valid="causeDeathIsValid || !submit"
           :value="createProfileStore.profile.causeDeath"
           @input="createProfileStore.setCauseDeath"
       />
 
-      <MainInput
-          title="Свидетельство о смерти:"
-          name="cause_death"
-          value=""
+      <label class="input-wrap">
+        <span class="input-wrap__title">
+          Свидетельство о смерти:
+        </span>
+        <div class="input-form">
+          {{ createProfileStore.getDeathCertificateName }}
+          <input
+            @change="setDeathCertificate"
+            hidden
+            type="file"
+            class="input-text"
+            accept=".pdf"
+          />
+        </div>
+      </label>
+    </div>
+
+    <div class="steep-wrap grid-col-2">
+      <MainSelect
+        title="Отец"
+        :answers="getFatherNames"
+      />
+      <MainSelect
+        title="Мать"
+        :answers="getMotherNames"
+      />
+      <MainSelect
+        title="Супруг / Супруга"
+        :answers="getWifeNames"
       />
     </div>
-    <div class="steep-wrap grid-col-2">
-      <div class="input-wrap">
-        <span class="input-wrap__title">Отец</span>
 
-        <div class="select-form">
-          <div class="select">
-            <output class="select__output"
-            >Выберите из списка</output
-            >
-            <ul class="select-list">
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-            </ul>
-          </div>
-          <svg aria-hidden="true" class="select-arrow">
-            <path
-                d="M7 7.8c-.2 0-.4-.1-.6-.2L.8 2 2 .8l5 5 5-5L13.2 2 7.6 7.6c-.2.2-.4.2-.6.2z"
-            />
-          </svg>
-        </div>
-      </div>
-      <div class="input-wrap">
-        <span class="input-wrap__title">Мать</span>
-
-        <div class="select-form">
-          <div class="select">
-            <output class="select__output">Выберите из списка</output>
-            <ul class="select-list">
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-            </ul>
-          </div>
-
-          <svg aria-hidden="true" class="select-arrow">
-            <path
-                d="M7 7.8c-.2 0-.4-.1-.6-.2L.8 2 2 .8l5 5 5-5L13.2 2 7.6 7.6c-.2.2-.4.2-.6.2z"
-            />
-          </svg>
-        </div>
-      </div>
-      <div class="input-wrap">
-        <span class="input-wrap__title">Супруг / Супруга</span>
-
-        <div class="select-form">
-          <div class="select">
-            <output class="select__output"
-            >Выберите из списка</output
-            >
-            <ul class="select-list">
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-              <li class="select-list__item">
-                Алексеев Алексей Алексеевич
-              </li>
-            </ul>
-          </div>
-          <svg aria-hidden="true" class="select-arrow">
-            <path
-                d="M7 7.8c-.2 0-.4-.1-.6-.2L.8 2 2 .8l5 5 5-5L13.2 2 7.6 7.6c-.2.2-.4.2-.6.2z"
-            />
-          </svg>
-        </div>
-      </div>
-      <div class="input-wrap">
-        <span class="input-wrap__title">Выпадающий список</span>
-
-        <select name="" id="">
-          <option disabled selected>Выбирите значение</option>
-          <option>Выпадающее значение №1</option>
-          <option>Выпадающее значение №2</option>
-          <option>Выпадающее значение №3</option>
-        </select>
-      </div>
-    </div>
+    <button class="save-and-next btn blue-btn" @click="nextStep">
+      Сохранить и продолжить
+    </button>
   </div>
 </template>
 
@@ -161,6 +116,81 @@
 import MainInput from "@/components/common/MainInput.vue";
 import PhotoUploader from "@/components/CreateProfile/PrimaryInfo/PhotoUploader.vue";
 import {useCreateProfileStore} from "@/store/createProfileStore/useClientProfileStore";
+import MainSelect from "@/components/common/MainSelect.vue";
+import {computed, onMounted, reactive, ref} from "vue";
+import api from "@/api/createProfile/api";
+import {useNotificationStore} from "@/store/notificationStore/notificationStore";
+import NotificationTypes from "@/const/NotificationTypes";
+import {useI18n} from "vue-i18n";
 
+const emits = defineEmits([
+    'nextStep',
+])
+
+const {t} = useI18n()
+const notification = useNotificationStore()
 const createProfileStore = useCreateProfileStore()
+const submit = ref(false);
+const linkedProfiles = reactive({
+  father: [],
+  mother: [],
+  wife: [],
+})
+
+const getFatherNames = computed(() => {
+  return linkedProfiles.father.map((profile) => profile.full_name)
+})
+
+const getMotherNames = computed(() => {
+  return linkedProfiles.mother.map((profile) => profile.full_name)
+})
+
+const getWifeNames = computed(() => {
+  return linkedProfiles.wife.map((profile) => profile.full_name)
+})
+
+const nameIsValid = computed(() => !isEmpty(createProfileStore.profile.name))
+const surnameIsValid = computed(() => !isEmpty(createProfileStore.profile.surname))
+const lastNameIsValid = computed(() => !isEmpty(createProfileStore.profile.lastname))
+const dateBirthIsValid = computed(() => !isEmpty(createProfileStore.profile.dateBirth))
+const placeBirthIsValid = computed(() => !isEmpty(createProfileStore.profile.placeBirth))
+const dateDeathIsValid = computed(() => !isEmpty(createProfileStore.profile.dateDeath))
+const causeDeathIsValid = computed(() => !isEmpty(createProfileStore.profile.causeDeath))
+
+const requiredFieldsIsValid = computed(() => {
+  return nameIsValid.value &&
+      surnameIsValid.value &&
+      lastNameIsValid.value &&
+      dateBirthIsValid.value &&
+      placeBirthIsValid.value &&
+      dateDeathIsValid.value &&
+      causeDeathIsValid.value
+})
+
+function setDeathCertificate(event) {
+  createProfileStore.setDeathCertificate(event.target.files[0])
+}
+
+function isEmpty(value) {
+  return value.length === 0
+}
+
+function nextStep() {
+  submit.value = true;
+
+  if (requiredFieldsIsValid.value) {
+    emits('nextStep');
+  }
+}
+
+onMounted(async () => {
+  try {
+    linkedProfiles.father = (await api.getLinkedProfiles('male')).humans
+    linkedProfiles.mother = (await api.getLinkedProfiles('female')).humans
+    linkedProfiles.wife = (await api.getLinkedProfiles()).humans
+  } catch (e) {
+    console.log(e)
+    notification.showNotification(t('notifications.serverError'), NotificationTypes.ERROR)
+  }
+})
 </script>

@@ -14,11 +14,15 @@ export const useCreateProfileStore = defineStore('createProfile', {
         burialPlace: '',
         causeDeath: '',
         additionalPhotos: [],
+        deathCertificate: null,
       },
     }
   },
 
   getters: {
+    getDeathCertificateName() {
+      return this.profile.deathCertificate?.name;
+    },
   },
 
   actions: {
@@ -51,6 +55,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
     },
     addAdditionalPhoto(file) {
       this.profile.additionalPhotos.push(file)
+    },
+    setDeathCertificate(file) {
+      this.profile.deathCertificate = file;
     },
   },
 });

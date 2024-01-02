@@ -7,7 +7,7 @@
     <div class="select-form" @click="showList = !showList">
       <div class="select">
         <output class="select__output">
-          {{ subtitle }}
+          {{ getSubtitle }}
         </output>
         <ul class="select-list" v-if="showList">
           <li
@@ -30,9 +30,9 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -49,6 +49,10 @@ const emits = defineEmits([
 
 const subtitle = ref('Выберите из списка')
 const showList = ref(false)
+
+const getSubtitle = computed(() => {
+  return props.answers.length === 0 ? 'Нет доступных значений' : subtitle.value;
+})
 
 function chooseAnswer(answer) {
   subtitle.value = answer

@@ -4,6 +4,17 @@
     <div :class="getClassesInput">
       <slot name="link"></slot>
       <input
+        v-if="mask"
+        :type="type"
+        :name="name"
+        :value="value"
+        v-mask="mask"
+        :placeholder="placeholder"
+        class="input-text"
+        @input="emits('input', $event.target.value)"
+      />
+      <input
+        v-else
         :type="type"
         :name="name"
         :value="value"
@@ -51,6 +62,10 @@
       type: String,
       default: '',
     },
+    mask: {
+      type: String,
+      default: null,
+    },
   })
 
   const emits = defineEmits([
@@ -83,7 +98,6 @@
 
   .input-form {
     width: 100%;
-    height: 44px;
     padding: 6.4px 17.6px;
     background-color: $gray;
     border: 1px solid #cdd1d6;
