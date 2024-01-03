@@ -8,4 +8,9 @@ export default {
       },
     })).data
   },
+  async createProfile(body) {
+    return (await api.post('/profile/humans', body, {
+      "Content-Type": 'multipart/form-data'
+    })).data
+  },
 }
