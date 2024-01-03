@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import api from "@/api/client/api";
 
 export const useClientStore = defineStore('client', {
   state: () => {
@@ -21,6 +22,10 @@ export const useClientStore = defineStore('client', {
   actions: {
     setUser({ id, email, username, avatar }) {
       this.user = {id, email, username, avatar }
+    },
+    async getUser() {
+      const { user } = await api.getUser()
+      this.user = user;
     },
   },
 });
