@@ -1,12 +1,11 @@
 import axios from 'axios';
-import {useCookie} from "@/composables/useCookie";
-
-const token = useCookie().getCookie('authToken')
+import AuthHeaderInterceptor from "@/api/interceptors/AuthHeaderInterceptor";
 
 const api = axios.create({
   baseURL: 'https://memorialbook.site/api/v1',
-  headers: {'Authorization': `Bearer ${token}`}
 });
+
+api.interceptors.request.use(AuthHeaderInterceptor)
 
 export {
   api,
