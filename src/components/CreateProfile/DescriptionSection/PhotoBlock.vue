@@ -28,7 +28,18 @@
           hidden="hidden"
           name="load-resource"
         />
-        <img class="bg-img" :src="preview" alt="image" />
+        <span
+          v-if="isVideo(getExtension(preview.file.name))"
+          class="filename"
+        >
+          {{ preview.file.name }}
+        </span>
+        <img
+          v-else
+          class="bg-img"
+          :src="preview.background"
+          alt="image"
+        />
       </div>
       <label class="input-photo-load">
         <svg
@@ -39,9 +50,9 @@
               d="M10.5 21c-.6 0-1-.4-1-1v-8.5H1c-.6 0-1-.4-1-1s.4-1 1-1h8.5V1c0-.6.4-1 1-1s1 .4 1 1v8.5H20c.6 0 1 .4 1 1s-.4 1-1 1h-8.5V20c0 .6-.4 1-1 1z"
           />
         </svg>
-        <span class="input-photo-load__text"
-        >Добавить фото/видео</span
-        >
+        <span class="input-photo-load__text">
+          Добавить фото/видео
+        </span>
         <input
             @change="addPhoto"
             type="file"
@@ -61,8 +72,22 @@ import {computed} from "vue";
 const createProfileStore = useCreateProfileStore()
 
 const getFilesPreview = computed(() => {
-  return createProfileStore.profile.additionalPhotos.map((file) => window.URL.createObjectURL(file))
+  return createProfileStore.profile.additionalPhotos.map((file) => {
+    return {
+      background: window.URL.createObjectURL(file),
+      file,
+    }
+  })
 })
+
+function getExtension(filename) {
+  return filename.split('.').pop();
+}
+
+function isVideo(format) {
+  const videoFormats = ['mp4', 'webm']
+  return videoFormats.includes(format)
+}
 
 function addPhoto(event) {
   const file = event.target.files[0]
@@ -70,3 +95,16 @@ function addPhoto(event) {
   createProfileStore.addAdditionalPhoto(file)
 }
 </script>
+
+<style lang="scss" scoped>
+.filename {
+  text-overflow: ellipsis;
+  width: 75px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+}
+</style>
