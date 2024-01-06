@@ -10,6 +10,7 @@
         :value="value"
         v-mask="mask"
         :placeholder="placeholder"
+        :disabled="disable"
         class="input-text"
         @input="emits('input', $event.target.value)"
       />
@@ -19,6 +20,7 @@
         :name="name"
         :value="value"
         :placeholder="placeholder"
+        :disabled="disable"
         class="input-text"
         @input="emits('input', $event.target.value)"
       />
@@ -65,6 +67,10 @@
     mask: {
       type: String,
       default: null,
+    },
+    disable: {
+      type: Boolean,
+      default: false,
     },
   })
 
