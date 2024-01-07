@@ -19,6 +19,7 @@ export const useCreateProfileStore = defineStore('createProfile', {
         description: '',
         religion: '',
         access: 'public',
+        burialCoords: {},
       },
     }
   },
@@ -43,21 +44,14 @@ export const useCreateProfileStore = defineStore('createProfile', {
       body.append('date_death', this.profile.dateDeath)
       body.append('birth_place', this.profile.placeBirth)
       body.append('burial_place', this.profile.burialPlace)
-      body.append('father_id', null)
-      body.append('mother_id', null)
-      body.append('spouse_id', null)
+      body.append('death_reason', this.profile.causeDeath)
       body.append('description', this.profile.description)
       body.append('access', this.profile.access)
       body.append('avatar', this.profile.photo)
-      this.profile.additionalPhotos.forEach((photo) => body.append('gallery[]', photo))
-      body.append('banner', null)
       body.append('death_certificate', this.profile.deathCertificate)
-      body.append('hobbies', null)
       body.append('religion', this.profile.religion)
-      body.append('burial_coords', null)
-      body.append('as_draft', false)
-      body.append('burial_coords.lat', null)
-      body.append('burial_coords.ing', null)
+      this.profile.additionalPhotos.forEach((photo) => body.append('gallery[]', photo))
+      body.append('as_draft', 0)
 
       return body;
     }
@@ -108,6 +102,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
     },
     async createProfile() {
       await api.createProfile(this.getFormattedDataForRequest)
+    },
+    setBurialCoords(coords) {
+      this.profile.burialCoords = coords
     }
   },
 });

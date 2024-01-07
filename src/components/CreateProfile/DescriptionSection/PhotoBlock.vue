@@ -57,7 +57,7 @@
             @change="addPhoto"
             type="file"
             class="load-files"
-            accept=".jpg,.jpeg,.png,.mp4,.webm"
+            accept=".jpg,.jpeg,.png,.mp4,.webp"
             multiple
         />
       </label>

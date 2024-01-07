@@ -1,6 +1,7 @@
 <template>
   <MainPopup
     :visible="visible"
+    @close="emits('close')"
   >
     <div style="display: none">
       <input
@@ -16,7 +17,7 @@
       <strong>Place ID:</strong> <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
-    <button class="complete" @click="close">
+    <button class="complete btn blue-btn" @click="setPlace">
       Применить
     </button>
   </MainPopup>
@@ -27,7 +28,7 @@ import {onMounted, reactive, ref} from "vue";
 import {Loader} from "@googlemaps/js-api-loader";
 import MainPopup from "@/components/common/MainPopup.vue";
 
-const props = defineProps({
+defineProps({
   visible: {
     type: Boolean,
     required: true,
@@ -36,17 +37,18 @@ const props = defineProps({
 
 const emits = defineEmits([
     'close',
+    'setPlace',
 ])
 
 const coords = reactive({})
 const placeName = ref('')
 
-function close() {
-  emits('close', { placeName, coords })
+function setPlace() {
+  emits('setPlace', { placeName, coords })
 }
 
 onMounted(() => {
-  if (!props.visible) return
+  console.log('mount')
   let map;
   const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
   const zoom = 14;
@@ -108,7 +110,7 @@ onMounted(() => {
       placeName.value = place.formatted_address;
       coords.value = {
         lat: place.geometry.location.lat(),
-        ing: place.geometry.location.ing(),
+        ing: place.geometry.location.lng(),
       };
       marker.setVisible(true);
       infowindowContent.children.namedItem("place-name").textContent = place.name;
@@ -148,6 +150,10 @@ onMounted(() => {
 
 .title {
   font-weight: bold;
+}
+
+.complete {
+  margin-top: 10px;
 }
 
 #infowindow-content {

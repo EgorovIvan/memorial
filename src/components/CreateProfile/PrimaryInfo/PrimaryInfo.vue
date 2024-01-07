@@ -61,9 +61,17 @@
       <MainInput
           title="Место захоронения:"
           name="burial_place"
+          :disable="true"
           :value="createProfileStore.profile.burialPlace"
           placeholder="Укажите место захоронения"
           @input="createProfileStore.setBurialPlace"
+          @click="visibleMapPopup = true"
+      />
+      <MapPopup
+        v-if="visibleMapPopup"
+        :visible="visibleMapPopup"
+        @setPlace="setPlace"
+        @close="visibleMapPopup = false"
       />
 
       <MainInput
@@ -122,6 +130,7 @@ import api from "@/api/createProfile/api";
 import {useNotificationStore} from "@/store/notificationStore/notificationStore";
 import NotificationTypes from "@/const/NotificationTypes";
 import {useI18n} from "vue-i18n";
+import MapPopup from "@/components/CreateProfile/PrimaryInfo/MapPopup.vue";
 
 const emits = defineEmits([
     'nextStep',
@@ -136,6 +145,7 @@ const linkedProfiles = reactive({
   mother: [],
   wife: [],
 })
+const visibleMapPopup = ref(false);
 
 const getFatherNames = computed(() => {
   return linkedProfiles.father.map((profile) => profile.full_name)
@@ -166,6 +176,15 @@ const requiredFieldsIsValid = computed(() => {
       dateDeathIsValid.value &&
       causeDeathIsValid.value
 })
+
+function setPlace({ placeName, coords }) {
+  if (placeName.value.length === 0) {
+    return notification.showNotification('Выберите место захоронения', NotificationTypes.WARNING)
+  }
+  createProfileStore.setBurialCoords(coords.value)
+  createProfileStore.setBurialPlace(placeName.value)
+  visibleMapPopup.value = false
+}
 
 function setDeathCertificate(event) {
   createProfileStore.setDeathCertificate(event.target.files[0])
