@@ -20,6 +20,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
         religion: '',
         access: 'public',
         burialCoords: {},
+        fatherId: null,
+        motherId: null,
+        wifeId: null,
       },
     }
   },
@@ -50,6 +53,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
       body.append('avatar', this.profile.photo)
       body.append('death_certificate', this.profile.deathCertificate)
       body.append('religion', this.profile.religion)
+      body.append('father_id', this.profile.fatherId)
+      body.append('mother_id', this.profile.motherId)
+      body.append('spouse_id', this.profile.wifeId)
       this.profile.additionalPhotos.forEach((photo) => body.append('gallery[]', photo))
       body.append('as_draft', 0)
 
@@ -105,6 +111,15 @@ export const useCreateProfileStore = defineStore('createProfile', {
     },
     setBurialCoords(coords) {
       this.profile.burialCoords = coords
-    }
+    },
+    setFatherId(value) {
+      this.profile.fatherId = value;
+    },
+    setMotherId(value) {
+      this.profile.motherId = value;
+    },
+    setWifeId(value) {
+      this.profile.wifeId = value;
+    },
   },
 });

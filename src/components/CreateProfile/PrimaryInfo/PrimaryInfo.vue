@@ -103,14 +103,17 @@
       <MainSelect
         title="Отец"
         :answers="getFatherNames"
+        @chooseAnswer="setFather"
       />
       <MainSelect
         title="Мать"
         :answers="getMotherNames"
+        @chooseAnswer="setMother"
       />
       <MainSelect
         title="Супруг / Супруга"
         :answers="getWifeNames"
+        @chooseAnswer="setWife"
       />
     </div>
 
@@ -148,15 +151,27 @@ const linkedProfiles = reactive({
 const visibleMapPopup = ref(false);
 
 const getFatherNames = computed(() => {
-  return linkedProfiles.father.map((profile) => profile.full_name)
+  return linkedProfiles.father.map((profile) => {
+    return {id: profile.id, value: profile.full_name}
+  })
 })
 
 const getMotherNames = computed(() => {
-  return linkedProfiles.mother.map((profile) => profile.full_name)
+  return linkedProfiles.mother.map((profile) => {
+    return {
+      id: profile.id,
+      value: profile.full_name,
+    }
+  })
 })
 
 const getWifeNames = computed(() => {
-  return linkedProfiles.wife.map((profile) => profile.full_name)
+  return linkedProfiles.wife.map((profile) => {
+    return {
+      id: profile.id,
+      value: profile.full_name,
+    }
+  })
 })
 
 const nameIsValid = computed(() => !isEmpty(createProfileStore.profile.name))
@@ -176,6 +191,21 @@ const requiredFieldsIsValid = computed(() => {
       dateDeathIsValid.value &&
       causeDeathIsValid.value
 })
+
+function setFather(id) {
+  const father = linkedProfiles.father.find(father => father.id === id)
+  createProfileStore.setFatherId(father.id)
+}
+
+function setMother(id) {
+  const mother = linkedProfiles.mother.find(mother => mother.id === id)
+  createProfileStore.setMotherId(mother.id)
+}
+
+function setWife(id) {
+  const wife = linkedProfiles.wife.find(wife => wife.id === id)
+  createProfileStore.setWifeId(wife.id)
+}
 
 function setPlace({ placeName, coords }) {
   if (placeName.value.length === 0) {

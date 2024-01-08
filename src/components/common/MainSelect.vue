@@ -11,12 +11,12 @@
         </output>
         <ul class="select-list" v-if="showList">
           <li
-            v-for="(answer, index) in answers"
+            v-for="({ id, value }, index) in answers"
             :key="index"
-            @click="chooseAnswer(answer)"
+            @click="chooseAnswer({ id, value })"
             class="select-list__item"
           >
-            {{ answer }}
+            {{ value }}
           </li>
         </ul>
       </div>
@@ -54,8 +54,8 @@ const getSubtitle = computed(() => {
   return props.answers.length === 0 ? 'Нет доступных значений' : subtitle.value;
 })
 
-function chooseAnswer(answer) {
-  subtitle.value = answer
-  emits('chooseAnswer', answer)
+function chooseAnswer({id, value}) {
+  subtitle.value = value
+  emits('chooseAnswer', id)
 }
 </script>
