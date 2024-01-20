@@ -154,14 +154,13 @@ $$$$-*/
 .select-form,
 .textarea-form {
   width: 100%;
-  height: 44px;
+  min-height: 44px;
   padding: 6.4px 17.6px;
   background-color: $gray;
   border: 1px solid #cdd1d6;
   border-radius: 7px;
   transition: $normal;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
 }
@@ -1714,7 +1713,6 @@ $$$$-*/
   z-index: 3;
   overflow: hidden;
   width: calc(100% + 2px);
-  height: 0;
   border: 1px solid transparent;
   border-bottom: none;
 }
@@ -1904,6 +1902,7 @@ $$$$-*/
 .input-photo-preview {
   width: 95px;
   height: 95px;
+  background: #ffffff;
 }
 
 .delete-resource {

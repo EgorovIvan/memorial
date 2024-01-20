@@ -4,9 +4,23 @@
     <div :class="getClassesInput">
       <slot name="link"></slot>
       <input
+        v-if="mask"
         :type="type"
         :name="name"
         :value="value"
+        v-mask="mask"
+        :placeholder="placeholder"
+        :disabled="disable"
+        class="input-text"
+        @input="emits('input', $event.target.value)"
+      />
+      <input
+        v-else
+        :type="type"
+        :name="name"
+        :value="value"
+        :placeholder="placeholder"
+        :disabled="disable"
         class="input-text"
         @input="emits('input', $event.target.value)"
       />
@@ -46,10 +60,22 @@
       type: String,
       required: true,
     },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    mask: {
+      type: String,
+      default: null,
+    },
+    disable: {
+      type: Boolean,
+      default: false,
+    },
   })
 
   const emits = defineEmits([
-      'input'
+      'input',
   ])
 
   const getClassesInput = computed(() => {
@@ -78,7 +104,6 @@
 
   .input-form {
     width: 100%;
-    height: 44px;
     padding: 6.4px 17.6px;
     background-color: $gray;
     border: 1px solid #cdd1d6;
