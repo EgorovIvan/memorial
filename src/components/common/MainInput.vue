@@ -75,7 +75,7 @@
   })
 
   const emits = defineEmits([
-      'input'
+      'input',
   ])
 
   const getClassesInput = computed(() => {

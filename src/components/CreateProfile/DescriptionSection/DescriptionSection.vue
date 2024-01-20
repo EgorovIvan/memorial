@@ -16,8 +16,8 @@
 
       <MainSelect
         title="Религиозные взгляды:"
-        :answers="['Ислам', 'Буддизм', 'Христианство']"
-        @chooseAnswer="createProfileStore.setReligion"
+        :answers="religions"
+        @chooseAnswer="setReligion"
       />
     </div>
     <button class="save-and-next btn blue-btn" @click="nextStep">
@@ -41,9 +41,29 @@ const emits = defineEmits([
 const notification = useNotificationStore()
 const createProfileStore = useCreateProfileStore()
 
+const religions = [
+  {
+    id: 1,
+    value: 'Ислам'
+  },
+  {
+    id: 2,
+    value: 'Буддизм',
+  },
+  {
+    id: 3,
+    value: 'Христианство',
+  }
+]
+
 const descriptionIsValid = computed(() => {
   return createProfileStore.profile.description.length !== 0;
 })
+
+function setReligion(id) {
+  const religion = religions.find(religion => religion.id === id)
+  createProfileStore.setReligion(religion.value)
+}
 
 function nextStep() {
   if (descriptionIsValid.value) {

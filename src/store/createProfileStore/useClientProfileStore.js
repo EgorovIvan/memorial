@@ -20,9 +20,9 @@ export const useCreateProfileStore = defineStore('createProfile', {
         religion: '',
         access: 'public',
         burialCoords: {},
-        fatherId: null,
-        motherId: null,
-        wifeId: null,
+        fatherId: 0,
+        motherId: 0,
+        wifeId: 0,
       },
     }
   },

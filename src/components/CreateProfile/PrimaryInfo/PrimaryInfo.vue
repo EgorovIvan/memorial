@@ -67,6 +67,7 @@
           @input="createProfileStore.setBurialPlace"
           @click="visibleMapPopup = true"
       />
+
       <MapPopup
         v-if="visibleMapPopup"
         :visible="visibleMapPopup"
