@@ -23,6 +23,7 @@ export const useCreateProfileStore = defineStore('createProfile', {
         fatherId: 0,
         motherId: 0,
         wifeId: 0,
+        draft: false,
       },
     }
   },
@@ -57,13 +58,16 @@ export const useCreateProfileStore = defineStore('createProfile', {
       body.append('mother_id', this.profile.motherId)
       body.append('spouse_id', this.profile.wifeId)
       this.profile.additionalPhotos.forEach((photo) => body.append('gallery[]', photo))
-      body.append('as_draft', 0)
+      body.append('as_draft', this.profile.draft)
 
       return body;
     }
   },
 
   actions: {
+    setDraft(value) {
+      this.profile.draft = value;
+    },
     setPhoto(photo) {
       this.profile.photo = photo;
     },

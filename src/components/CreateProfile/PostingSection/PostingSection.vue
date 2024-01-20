@@ -84,7 +84,7 @@
   </div>
 
   <div class="buttons-save">
-    <button type="button" class="save-draft hide btn white-btn">
+    <button type="button" class="save-draft btn white-btn" @click="createProfileDraft">
       Сохранить как черновик
     </button>
     <button type="button" class="save-and-next btn blue-btn" @click="createProfile">
@@ -112,6 +112,11 @@ const access = computed({
     createProfileStore.setAccess(value)
   }
 })
+
+async function createProfileDraft() {
+  createProfileStore.setDraft(true)
+  await createProfile()
+}
 
 async function createProfile() {
   try {
